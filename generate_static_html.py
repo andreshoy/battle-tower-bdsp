@@ -1,35 +1,39 @@
 import pandas as pd
 import json
 import os
+import math
 
 def generate_html():
     # Load data
     try:
-        df = pd.read_parquet('data/battle_tower_trainers.parquet')
-        # Replicate logic: head(3) per team
-        df = df.groupby(['trainer_name', 'Set', 'Team']).head(3).reset_index(drop=True)
+        df = pd.read_parquet('data/final_battle_tower_data.parquet')
+        # We handle any potential NaNs in trainer_class (for Bosses)
+        df['trainer_class'] = df['trainer_class'].fillna('Boss')
     except Exception as e:
         print(f"Error loading data: {e}")
         return
 
     # Prepare data for JS
-    # Structure: { set_name: { class_name: { trainer_name: { team_name: [pokemon_list] } } } }
+    # Structure: { mode: { set_name: { class_name: { trainer_name: { team_name: [pokemon_list] } } } } }
     data_struct = {}
     for _, row in df.iterrows():
+        m = row['battle_mode']
         s = row['Set']
         c = row['trainer_class']
         n = row['trainer_name']
         t = row['Team']
         
-        if s not in data_struct: data_struct[s] = {}
-        if c not in data_struct[s]: data_struct[s][c] = {}
-        if n not in data_struct[s][c]: data_struct[s][c][n] = {}
-        if t not in data_struct[s][c][n]: data_struct[s][c][n][t] = []
+        if m not in data_struct: data_struct[m] = {}
+        if s not in data_struct[m]: data_struct[m][s] = {}
+        if c not in data_struct[m][s]: data_struct[m][s][c] = {}
+        if n not in data_struct[m][s][c]: data_struct[m][s][c][n] = {}
+        if t not in data_struct[m][s][c][n]: data_struct[m][s][c][n][t] = []
         
         pokemon = row.to_dict()
-        # Clean up types
-        if pokemon['type2'] is None: pokemon['type2'] = ""
-        data_struct[s][c][n][t].append(pokemon)
+        # Clean up missing types or nan
+        if pokemon['type2'] is None or (isinstance(pokemon['type2'], float) and math.isnan(pokemon['type2'])): 
+            pokemon['type2'] = ""
+        data_struct[m][s][c][n][t].append(pokemon)
 
     json_data = json.dumps(data_struct)
 
@@ -90,12 +94,14 @@ def generate_html():
 <body class="bg-gray-100">
     <div id="app" class="max-w-mobile min-h-screen bg-white shadow-xl flex flex-col">
         <!-- Navigation -->
-        <div class="sticky top-0 z-10 bg-white shadow-sm p-2 flex items-center justify-between safe-top">
-            <button onclick="goStep(0)" id="nav-set" class="breadcrumb-btn px-2 py-1">SET</button>
-            <span class="material-icons text-gray-300">chevron_right</span>
-            <button onclick="goStep(1)" id="nav-cls" class="breadcrumb-btn px-2 py-1 hidden">CLS</button>
-            <span id="sep-cls" class="material-icons text-gray-300 hidden">chevron_right</span>
-            <button onclick="goStep(2)" id="nav-nom" class="breadcrumb-btn px-2 py-1 hidden">NOM</button>
+        <div class="sticky top-0 z-10 bg-white shadow-sm p-2 flex items-center justify-between safe-top overflow-x-auto whitespace-nowrap">
+            <button onclick="goStep(0)" id="nav-mod" class="breadcrumb-btn px-2 py-1">MOD</button>
+            <span id="sep-set" class="material-icons text-gray-300 hidden text-sm">chevron_right</span>
+            <button onclick="goStep(1)" id="nav-set" class="breadcrumb-btn px-2 py-1 hidden">SET</button>
+            <span id="sep-cls" class="material-icons text-gray-300 hidden text-sm">chevron_right</span>
+            <button onclick="goStep(2)" id="nav-cls" class="breadcrumb-btn px-2 py-1 hidden">CLS</button>
+            <span id="sep-nom" class="material-icons text-gray-300 hidden text-sm">chevron_right</span>
+            <button onclick="goStep(3)" id="nav-nom" class="breadcrumb-btn px-2 py-1 hidden">NOM</button>
         </div>
 
         <!-- Content -->
@@ -107,6 +113,7 @@ def generate_html():
         const typeColors = {json.dumps(type_colors)};
         let state = {{
             step: 0,
+            selMode: null,
             selSet: null,
             selClass: null,
             selName: null,
@@ -131,52 +138,95 @@ def generate_html():
                 renderStep2(content);
             }} else if (state.step === 3) {{
                 renderStep3(content);
+            }} else if (state.step === 4) {{
+                renderStep4(content);
             }}
         }}
 
         function updateNav() {{
+            const btnMod = document.getElementById('nav-mod');
             const btnSet = document.getElementById('nav-set');
             const btnCls = document.getElementById('nav-cls');
             const btnNom = document.getElementById('nav-nom');
+            
+            const sepSet = document.getElementById('sep-set');
             const sepCls = document.getElementById('sep-cls');
+            const sepNom = document.getElementById('sep-nom');
 
-            btnSet.innerText = state.selSet ? state.selSet.split(' ').pop() : 'SET';
-            btnSet.className = `breadcrumb-btn px-2 py-1 ${{state.step === 0 ? 'active-btn' : 'inactive-btn'}}`;
+            btnMod.innerText = state.selMode ? state.selMode.substring(0, 3).toUpperCase() : 'MOD';
+            btnMod.className = `breadcrumb-btn px-2 py-1 ${{state.step === 0 ? 'active-btn' : 'inactive-btn'}}`;
 
             if (state.step >= 1) {{
+                btnSet.classList.remove('hidden');
+                sepSet.classList.remove('hidden');
+                btnSet.innerText = state.selSet ? state.selSet.split(' ').pop() : 'SET';
+                btnSet.className = `breadcrumb-btn px-2 py-1 ${{state.step === 1 ? 'active-btn' : 'inactive-btn'}}`;
+            }} else {{
+                btnSet.classList.add('hidden');
+                sepSet.classList.add('hidden');
+            }}
+
+            if (state.step >= 2) {{
                 btnCls.classList.remove('hidden');
                 sepCls.classList.remove('hidden');
                 btnCls.innerText = state.selClass ? state.selClass.substring(0, 5) : 'CLS';
-                btnCls.className = `breadcrumb-btn px-2 py-1 ${{state.step === 1 ? 'active-btn' : 'inactive-btn'}}`;
+                btnCls.className = `breadcrumb-btn px-2 py-1 ${{state.step === 2 ? 'active-btn' : 'inactive-btn'}}`;
             }} else {{
                 btnCls.classList.add('hidden');
                 sepCls.classList.add('hidden');
             }}
 
-            if (state.step >= 2) {{
+            if (state.step >= 3) {{
                 btnNom.classList.remove('hidden');
+                sepNom.classList.remove('hidden');
                 btnNom.innerText = state.selName ? state.selName.substring(0, 5) : 'NOM';
-                btnNom.className = `breadcrumb-btn px-2 py-1 ${{state.step === 2 ? 'active-btn' : 'inactive-btn'}}`;
+                btnNom.className = `breadcrumb-btn px-2 py-1 ${{state.step === 3 ? 'active-btn' : 'inactive-btn'}}`;
             }} else {{
                 btnNom.classList.add('hidden');
+                sepNom.classList.add('hidden');
             }}
         }}
 
         function renderStep0(container) {{
             const div = document.createElement('div');
             div.className = 'flex flex-col items-center p-4';
-            div.innerHTML = '<h2 class="text-xl font-bold text-gray-700 mb-6">SELECCIONA EL SET</h2>';
+            div.innerHTML = '<h2 class="text-xl font-bold text-gray-700 mb-6">SELECCIONA EL MODO</h2>';
+            
+            const col = document.createElement('div');
+            col.className = 'flex flex-col w-full gap-4';
+            
+            // Order explicitly if possible, else just use keys
+            const modes = ['Single', 'Double'].filter(m => Object.keys(data).includes(m));
+            
+            modes.forEach(m => {{
+                const btn = document.createElement('button');
+                btn.className = 'w-full h-24 text-3xl font-black rounded-xl bg-white shadow-md border-2 border-blue-600 text-blue-600 active:bg-blue-50 uppercase';
+                btn.innerText = m;
+                btn.onclick = () => {{
+                    state.selMode = m;
+                    goStep(1);
+                }};
+                col.appendChild(btn);
+            }});
+            div.appendChild(col);
+            container.appendChild(div);
+        }}
+
+        function renderStep1(container) {{
+            const div = document.createElement('div');
+            div.className = 'flex flex-col items-center p-4';
+            div.innerHTML = `<h2 class="text-xl font-bold text-gray-700 mb-6">SETS - ${{state.selMode.toUpperCase()}}</h2>`;
             
             const grid = document.createElement('div');
             grid.className = 'grid grid-cols-2 gap-4 w-full';
             
-            Object.keys(data).sort().forEach(s => {{
+            Object.keys(data[state.selMode]).sort().forEach(s => {{
                 const btn = document.createElement('button');
                 btn.className = 'h-24 text-3xl font-black rounded-xl bg-white shadow-md border-2 border-blue-600 text-blue-600 active:bg-blue-50';
-                btn.innerText = s.split(' ').pop();
+                btn.innerText = s.includes(' ') ? s.split(' ').pop() : s;
                 btn.onclick = () => {{
                     state.selSet = s;
-                    goStep(1);
+                    goStep(2);
                 }};
                 grid.appendChild(btn);
             }});
@@ -184,12 +234,12 @@ def generate_html():
             container.appendChild(div);
         }}
 
-        function renderStep1(container) {{
+        function renderStep2(container) {{
             const div = document.createElement('div');
             div.className = 'w-full p-2';
-            div.innerHTML = `<h2 class="text-lg text-center text-gray-600 mb-2">CLASES - SET ${{state.selSet.split(' ').pop()}}</h2>`;
+            div.innerHTML = `<h2 class="text-lg text-center text-gray-600 mb-2">CLASES - ${{state.selSet}}</h2>`;
             
-            const classes = Object.keys(data[state.selSet]).sort();
+            const classes = Object.keys(data[state.selMode][state.selSet]).sort();
             let currL = '';
             classes.forEach(c => {{
                 if (c[0] !== currL) {{
@@ -204,26 +254,6 @@ def generate_html():
                 btn.innerText = c;
                 btn.onclick = () => {{
                     state.selClass = c;
-                    goStep(2);
-                }};
-                div.appendChild(btn);
-            }});
-            container.appendChild(div);
-        }}
-
-        function renderStep2(container) {{
-            const div = document.createElement('div');
-            div.className = 'w-full p-2';
-            div.innerHTML = `<h2 class="text-xl font-bold text-center text-blue-800 mb-4 uppercase mt-2">${{state.selClass}}</h2>`;
-            
-            const names = Object.keys(data[state.selSet][state.selClass]).sort();
-            names.forEach(n => {{
-                const btn = document.createElement('button');
-                btn.className = 'w-full mb-3 h-14 font-bold bg-white border border-gray-300 rounded shadow-sm active:bg-gray-100';
-                btn.innerText = n;
-                btn.onclick = () => {{
-                    state.selName = n;
-                    state.selTeam = null; // Reset team selection
                     goStep(3);
                 }};
                 div.appendChild(btn);
@@ -232,9 +262,29 @@ def generate_html():
         }}
 
         function renderStep3(container) {{
-            const teamsData = data[state.selSet][state.selClass][state.selName];
+            const div = document.createElement('div');
+            div.className = 'w-full p-2';
+            div.innerHTML = `<h2 class="text-xl font-bold text-center text-blue-800 mb-4 uppercase mt-2">${{state.selClass}}</h2>`;
+            
+            const names = Object.keys(data[state.selMode][state.selSet][state.selClass]).sort();
+            names.forEach(n => {{
+                const btn = document.createElement('button');
+                btn.className = 'w-full mb-3 h-14 font-bold bg-white border border-gray-300 rounded shadow-sm active:bg-gray-100';
+                btn.innerText = n;
+                btn.onclick = () => {{
+                    state.selName = n;
+                    state.selTeam = null; // Reset team selection
+                    goStep(4);
+                }};
+                div.appendChild(btn);
+            }});
+            container.appendChild(div);
+        }}
+
+        function renderStep4(container) {{
+            const teamsData = data[state.selMode][state.selSet][state.selClass][state.selName];
             const teams = Object.keys(teamsData).sort();
-            if (!state.selTeam) state.selTeam = teams[0];
+            if (!state.selTeam || !teams.includes(state.selTeam)) state.selTeam = teams[0];
 
             const div = document.createElement('div');
             div.className = 'w-full p-2';
@@ -243,11 +293,11 @@ def generate_html():
             const btnRow = document.createElement('div');
             btnRow.className = 'flex justify-center gap-2 mb-4';
             teams.forEach(t => {{
-                const tNum = t.split(' ').pop();
+                const tLabel = t.includes(' ') ? t.split(' ').pop() : t;
                 const btn = document.createElement('button');
                 const isActive = state.selTeam === t;
                 btn.className = `w-10 h-10 rounded-full border-2 border-blue-600 font-bold ${{isActive ? 'bg-blue-600 text-white' : 'text-blue-600 bg-white'}}`;
-                btn.innerText = tNum;
+                btn.innerText = tLabel;
                 btn.onclick = () => {{
                     state.selTeam = t;
                     render();
@@ -258,7 +308,7 @@ def generate_html():
 
             const title = document.createElement('h2');
             title.className = 'text-xl font-bold text-center mb-4';
-            title.innerText = `${{state.selName}} (${{state.selTeam.split(' ').pop()}})`;
+            title.innerText = `${{state.selName}} (${{state.selTeam}})`;
             div.appendChild(title);
 
             const pokemonList = teamsData[state.selTeam];
@@ -277,7 +327,7 @@ def generate_html():
                 t1.innerText = p.type1;
                 header.appendChild(t1);
 
-                if (p.type2) {{
+                if (p.type2 && p.type2 !== "None" && p.type2.trim() !== "") {{
                     const t2 = document.createElement('span');
                     t2.className = 'type-chip';
                     t2.style.backgroundColor = typeColors[p.type2] || '#C1C2C1';
@@ -311,7 +361,7 @@ def generate_html():
                 for (let i = 1; i <= 4; i++) {{
                     const moveName = p[`move${{i}}`];
                     const moveColor = p[`move${{i}}_color`];
-                    if (moveName && moveName !== '-') {{
+                    if (moveName && moveName !== '-' && moveName !== 'None') {{
                         const mChip = document.createElement('span');
                         mChip.className = 'move-chip';
                         mChip.style.backgroundColor = (moveColor && moveColor.startsWith('#')) ? moveColor : '#C1C2C1';
@@ -332,9 +382,9 @@ def generate_html():
 </body>
 </html>
 """
-    with open('battle_tower.html', 'w', encoding='utf-8') as f:
+    with open('index.html', 'w', encoding='utf-8') as f:
         f.write(html_template)
-    print("Successfully generated battle_tower.html")
+    print("Successfully generated index.html")
 
 if __name__ == "__main__":
     generate_html()

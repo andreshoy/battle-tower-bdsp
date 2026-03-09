@@ -200,7 +200,7 @@ def main():
     df['Team'] = df['Team'].fillna('Unknown')
 
     # Filter for the first 3 pokemon per trainer, set, and team
-    df = df.groupby(['trainer_name', 'Set', 'Team']).head(3)
+    # df = df.groupby(['trainer_name', 'Set', 'Team']).head(3)
     
     # Drop the original 'set' column and reorder to put Set/Team at the beginning
     cols = ['trainer_class', 'trainer_name', 'Set', 'Team'] + [c for c in df.columns if c not in ['trainer_class', 'trainer_name', 'Set', 'Team', 'set']]
