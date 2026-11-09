@@ -13,14 +13,19 @@ Llegaste a 89: el equipo funciona. Las rachas largas casi siempre se pierden por
 1. **Identifica al rival** por su clase y su nombre. En la app: Single → Set 7 → clase → nombre. Ahí ves **todos los
    Pokémon posibles** de ese entrenador, con objeto, movimientos y stats. Cada entrenador tiene un roster fijo, así
    que es casi como ver su equipo antes de empezar.
-2. **Elige quién sale primero** según ese roster: el que no tenga debilidades frente a lo que puede sacar.
-3. Antes de atacar, revisa en la app el **objeto** y la **habilidad** del rival:
+2. **Elige quién sale primero** con la tabla *Líder recomendado por entrenador* de [matchups.md](matchups.md).
+   El rival saca primero a **uno de sus 3 Pokémon al azar**, así que el líder recomendado es el que mejor le va en
+   promedio contra todos los posibles. Si el entrenador no está en la tabla, sal con **Gastrodon**: es el mejor
+   líder general (enfrentamiento favorable contra el 53% de los Pokémon del Set 7).
+3. **Cuando veas qué sacó el rival,** busca ese Pokémon en la tabla principal de [matchups.md](matchups.md) y cambia si tu
+   líder está en la columna *Cuidado*.
+4. Antes de atacar, revisa en la app el **objeto** y la **habilidad** del rival:
    - **Banda Focus** o **Robustez** (Sturdy, muy común en el Set 7): no lo dejarás KO de un golpe. Usa primero un
      ataque débil o de prioridad, o ten listo el segundo golpe.
    - **Polvo Brillo** (Lucario, Dugtrio, Heatran de Palmer…): no te confíes con movimientos de 90% de precisión o menos.
    - **Garra Rápida**, Baya Zidra o Baya Aslac: el rival puede moverse antes que tú.
    - **Absorbe Agua**, Absorbe Elec, Electromotor, Absorbe Fuego, **Levitación**: anulan tu tipo de ataque.
-4. Elige el movimiento más seguro, no el más fuerte. Prefiere 100% de precisión a 85% aunque pegue menos.
+5. Elige el movimiento más seguro, no el más fuerte. Prefiere 100% de precisión a 85% aunque pegue menos.
    El KO de un golpe solo vale la pena si el rival te puede dejar KO a ti.
 
 ## Rivales con riesgo especial (Set 7)

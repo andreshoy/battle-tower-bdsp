@@ -97,3 +97,81 @@
 ## Rivales difíciles (ningún miembro tiene un enfrentamiento claro)
 
 Blissey, Floatzel, Porygon-Z, Regigigas, Starmie, Weavile
+
+## Líder recomendado por entrenador
+
+El primer Pokémon del rival es aleatorio, así que el líder se elige por su promedio contra **todos** los Pokémon posibles del entrenador (todos sus equipos). *Cuidado* = rivales que le pegan súper eficaz al líder y además son más rápidos que él: si sale uno de esos, considera cambiar.
+
+| Clase | Entrenador | Pokémon posibles | Líder | Cuidado |
+|---|---|---|---|---|
+| Ace Trainer♀ | Abbey | Armaldo, Feraligatr, Infernape, Poliwrath, Probopass, Umbreon | **Gastrodon** | — |
+| Ace Trainer♀ | Celina | Dusknoir, Electivire, Feraligatr, Lucario, Mamoswine, Snorlax | **Gyarados** | — |
+| Ace Trainer♀ | Cortney | Feraligatr, Kingdra, Salamence, Torterra, Vaporeon | **Roserade** | — |
+| Ace Trainer♀ | Irene | Arcanine, Blaziken, Crobat, Marowak, Porygon-Z, Umbreon | **Gyarados** | — |
+| Ace Trainer♂ | Dallin | Leafeon, Magnezone, Meganium, Rampardos, Tyranitar | **Roserade** | — |
+| Ace Trainer♂ | Ellis | Aggron, Blastoise, Dragonite, Hippowdon, Politoed, Scizor | **Roserade** | — |
+| Ace Trainer♂ | Jayden | Blastoise, Blaziken, Bronzong, Probopass, Sceptile, Toxicroak | **Gyarados** | — |
+| Ace Trainer♂ | Lionel | Dragonite, Gliscor, Kingdra, Mamoswine, Rhyperior, Venusaur | **Gastrodon** | Venusaur |
+| Battle Girl | Kristy | Blissey, Flygon, Lucario, Magnezone, Tangrowth, Wailord | **Roserade** | — |
+| Battle Girl | Sylvia | Dragonite, Hippowdon, Jolteon, Marowak, Snorlax, Venusaur | **Gastrodon** | Venusaur |
+| Bird Keeper | Paula | Charizard, Crobat, Drifblim | **Gastrodon** | — |
+| Bird Keeper | Skylar | Drapion, Marowak, Vaporeon | **Gyarados** | — |
+| Black Belt | Benny | Lucario, Torterra, Vaporeon | **Gyarados** | — |
+| Black Belt | Daron | Abomasnow, Alakazam, Dragonite, Empoleon, Luxray, Salamence | **Gyarados** | — |
+| Camper | Justyn | Arcanine, Blissey, Garchomp | **Gastrodon** | — |
+| Camper | Leland | Garchomp, Lickilicky, Scizor | **Roserade** | — |
+| Collector | Jim | Blaziken, Dragonite, Probopass | **Gastrodon** | — |
+| Collector | Josh | Aggron, Dugtrio, Flareon | **Gyarados** | — |
+| Cowgirl | Margot | Drifblim, Lucario, Metagross, Sceptile, Vaporeon, Walrein | **Gyarados** | — |
+| Cowgirl | Sophie | Empoleon, Flareon, Flygon, Politoed, Roserade, Typhlosion | **Gyarados** | Flygon |
+| Dragon Tamer | Alonso | Crobat, Dragonite, Milotic, Probopass, Slowking, Weavile | **Gastrodon** | — |
+| Dragon Tamer | Hernan | Feraligatr, Gyarados, Luxray, Milotic, Starmie, Umbreon | **Roserade** | Starmie |
+| Fisher | Bronson | Glaceon, Jolteon, Probopass | **Gastrodon** | — |
+| Fisher | Camden | Arcanine, Espeon, Infernape | **Gyarados** | Infernape |
+| Guitarist | Markell | Feraligatr, Jolteon, Tyranitar | **Gastrodon** | — |
+| Guitarist | Marquez | Espeon, Porygon-Z, Snorlax | **Gyarados** | — |
+| Guitarist | Tayler | Blissey, Swampert, Togekiss | **Roserade** | — |
+| Guitarist | Tory | Blissey, Charizard, Lapras | **Gyarados** | — |
+| Hiker | Jessy | Gengar, Hippowdon, Mamoswine | **Gyarados** | — |
+| Hiker | Stetson | Blissey, Infernape, Nidoking | **Gastrodon** | — |
+| Idol | Claudia | Blissey, Dragonite, Infernape | **Gastrodon** | — |
+| Idol | Kari | Garchomp, Starmie, Togekiss | **Gastrodon** | — |
+| Idol | Kyla | Gyarados, Magnezone, Torterra | **Gyarados** | — |
+| Idol | Maranda | Blaziken, Mamoswine, Milotic | **Gastrodon** | — |
+| Jogger | Dan | Ampharos, Porygon-Z, Tangrowth | **Gyarados** | — |
+| Jogger | Rico | Heracross, Tangrowth, Vaporeon | **Roserade** | — |
+| Madame | Kailey | Blaziken, Donphan, Dugtrio, Jolteon, Porygon-Z, Venusaur | **Gastrodon** | Venusaur |
+| Madame | Mayra | Aerodactyl, Kingdra, Luxray, Meganium, Roserade, Salamence | **Roserade** | — |
+| PI | Emmett | Dusknoir, Gengar, Magmortar | **Gyarados** | — |
+| PI | Quincy | Infernape, Magmortar, Swampert | **Gastrodon** | — |
+| Picnicker | Kyra | Electivire, Rhyperior, Typhlosion | **Gastrodon** | — |
+| Picnicker | Serena | Crobat, Dugtrio, Snorlax | **Gastrodon** | — |
+| Poké Fan♀ | Carley | Electivire, Lapras, Magnezone, Mamoswine, Porygon-Z, Togekiss | **Gastrodon** | — |
+| Poké Fan♀ | Selina | Flareon, Metagross, Umbreon | **Gyarados** | — |
+| Poké Fan♂ | Cecil | Charizard, Marowak, Miltank | **Gyarados** | — |
+| Poké Fan♂ | Ted | Espeon, Gliscor, Nidoking | **Gyarados** | — |
+| Poké Kid | Juliana | Ampharos, Typhlosion, Tyranitar | **Gyarados** | — |
+| Poké Kid | Tracy | Aerodactyl, Empoleon, Gardevoir | **Gastrodon** | — |
+| Pokémon Breeder♀ | Emilee | Flareon, Garchomp, Glaceon, Salamence, Tyranitar | **Gastrodon** | — |
+| Pokémon Breeder♀ | Tiffani | Arcanine, Blastoise, Dusknoir, Flygon, Sceptile, Slaking | **Roserade** | — |
+| Pokémon Breeder♂ | Blair | Empoleon, Glaceon, Infernape, Rhyperior, Swampert, Walrein | **Gastrodon** | — |
+| Pokémon Breeder♂ | Harvey | Gyarados, Jolteon, Salamence, Snorlax, Typhlosion, Walrein | **Gastrodon** | — |
+| Pokémon Ranger♀ | Darcy | Charizard, Empoleon, Gallade, Gyarados, Machamp, Typhlosion | **Gyarados** | — |
+| Pokémon Ranger♀ | Joy | Charizard, Gallade, Honchkrow, Lucario, Mamoswine | **Gyarados** | — |
+| Pokémon Ranger♂ | Denver | Aggron, Claydol, Flygon, Gardevoir, Glaceon, Metagross | **Gastrodon** | — |
+| Pokémon Ranger♂ | Rusty | Aggron, Dugtrio, Marowak, Snorlax, Tangrowth, Walrein | **Gyarados** | — |
+| Policeman | Rex | Glaceon, Hippowdon, Magnezone | **Gyarados** | — |
+| Policeman | Tyron | Charizard, Magmortar, Umbreon | **Gyarados** | — |
+| Psychic | Alma | Dragonite, Leafeon, Meganium, Slaking, Tangrowth | **Roserade** | — |
+| Psychic | Clara | Hippowdon, Meganium, Rhyperior | **Roserade** | — |
+| Psychic | Clyde | Blastoise, Claydol, Garchomp, Lapras, Meganium, Togekiss | **Roserade** | — |
+| Psychic | Gunner | Floatzel, Gyarados, Magnezone, Milotic, Roserade, Umbreon | **Roserade** | Floatzel |
+| Rancher | Alton | Dugtrio, Espeon, Honchkrow, Leafeon, Poliwrath, Torterra | **Roserade** | Espeon |
+| Rancher | Kellen | Blaziken, Gengar, Lapras, Miltank, Nidoqueen, Typhlosion | **Gyarados** | — |
+| Ruin Maniac | Rocky | Dusknoir, Sceptile, Swampert | **Roserade** | — |
+| Ruin Maniac | Trace | Gallade, Tyranitar, Venusaur | **Gyarados** | — |
+| Sailor | Bernard | Mamoswine, Swampert, Vaporeon | **Roserade** | — |
+| Sailor | Hugh | Flareon, Jolteon, Metagross | **Gastrodon** | — |
+| Tower Tycoon | Palmer | Cresselia, Heatran, Regigigas | **Gyarados** | — |
+| Veteran | Antony | Alakazam, Bronzong, Magmortar, Marowak, Slaking, Togekiss | **Gyarados** | — |
+| Veteran | Mikel | Armaldo, Blissey, Gallade, Gengar, Glaceon, Lucario | **Gyarados** | — |
