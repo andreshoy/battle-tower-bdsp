@@ -80,7 +80,7 @@ Ninguno de los tres le pega súper eficaz a Gastrodon.
 | Si sale | Plan |
 |---|---|
 | **Rhyperior** (Roca Sólida, Cinta Experto, Vel 45) | **Gastrodon → Escaldar** (x4; Roca Sólida lo reduce algo, pero su Def. Especial es 65). Su Rayo no te afecta y Rayo Hielo te pega neutral |
-| **Dragonite** (Multiescamas, Lupa, Vel 119) | **Gastrodon → Rayo Hielo** (x4). Multiescamas reduce a la mitad el primer golpe, así que pueden hacer falta 2. Acua Cola no te afecta por Colector. Alternativa: Roserade → Brillo Mágico (x2), es más rápida, y la Banda Focus la salva de un golpe |
+| **Dragonite** (Multiescamas, Lupa, Vel 119) | **Gastrodon → Rayo Hielo** (x4): el 1.º le quita ~40% (Multiescamas) y el 2.º ~75-88%, así que **caen 2**. Su Carga Dragón le quita ~45% a Gastrodon por golpe, así que aguantas justo los dos (salvo crítico o retroceso). Acua Cola no te afecta por Colector. Alternativa: Roserade → Brillo Mágico (x2), es más rápida, y la Banda Focus la salva de un golpe |
 | **Milotic** (Escama Especial, Baya Aslac, Vel 91) | Su Hidrobomba no le hace nada a Gastrodon (y le sube el Ataque Especial), pero Gastrodon tampoco le hace mucho. **Cambia a Roserade → Gigadrenado** (x2): es más rápida y Cura Natural le quita el sueño si te duerme con Hipnosis |
 | No uses a Gyarados | Rayo de Rhyperior (x4) y Roca Afilada de Dragonite (x2) |
 
@@ -88,9 +88,9 @@ Ninguno de los tres le pega súper eficaz a Gastrodon.
 | Si sale | Plan |
 |---|---|
 | **Heatran** (Absorbe Fuego, **Polvo Brillo**, Vel 97) | **Gyarados → Terremoto** (x4). Es inmune a su Tierra Viva y resiste Lluvia Ígnea y Foco Resplandor. Si fallas por el Polvo Brillo, repite. Respaldo: Gastrodon → Tierra Viva (x4) |
-| **Regigigas** (Inicio Lento, Baya Chople, Vel 121) | Sus primeros **5 turnos** tiene la mitad de Ataque y Velocidad: **Danza Dragón** 1-2 veces (aprovecha cuando use Protección) y luego Cascada o Terremoto. Tiene Roca Afilada (x2 contra Gyarados), así que acábalo **antes** de que termine Inicio Lento |
-| **Cresselia** (Levitación, Restos, Vel 150) | Es más rápida que Gyarados sin mejoras. **Triturar** (x2, físico: Paz Mental no la protege) desde el primer turno. Si usa Sustituto, rómpelo con Triturar. No dejes que acumule Paz Mental, porque cada mejora hace más fuerte su Poder Reserva |
-| No uses a Roserade | Cresselia (Psíquico), Regigigas (Puño Hielo) y Heatran (Fuego) le pegan súper eficaz |
+| **Regigigas** (Inicio Lento, Baya Chople, Vel 121) | Es el más duro: Cascada sin mejoras le quita solo **29-34%**. Durante sus primeros **5 turnos** tiene la mitad de Ataque y Velocidad, y con Intimidación te pega más o menos un 40% por turno. Haz **1 Danza Dragón** (mejor si coincide con su Protección) y luego **Cascada** cada turno (+1: ~45-50% por golpe, y Gyarados siempre es más rápido). Si Gyarados baja de 40%, no hagas otra Danza: ataca. Respaldo: **Roserade → Bomba Lodo** (32-38%, es más rápida y tiene Banda Focus) |
+| **Cresselia** (Levitación, Restos, Vel 150) | Triturar sin mejoras le quita solo **33-40%**, y ella se cura con Luz Lunar y Restos. Sus ataques le hacen poco a Gyarados (Poder Reserva es débil hasta que acumula mejoras). Por eso: **Danza Dragón 1-2 veces** primero (con +1 ya eres más rápido que ella) y luego **Triturar** cada turno (+2: ~65-80% por golpe; puede bajarle la Defensa). Si usa Sustituto, rómpelo con Triturar |
+| Roserade solo de respaldo | Cresselia (Psíquico), Regigigas (Puño Hielo) y Heatran (Fuego) le pegan súper eficaz: úsala solo para rematar a Regigigas |
 
 ## Después de una derrota
 Anota en `estrategia/derrotas.md` el número de batalla, el rival, qué pasó y qué cambiarías.

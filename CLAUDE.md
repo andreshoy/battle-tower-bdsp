@@ -13,6 +13,7 @@ The user writes in Spanish; keep docs and strategy files in Spanish.
 - `utils/generate_static_html.py` – writes the standalone `index.html` (do not edit `index.html` by hand).
 - `ui/app.py` – NiceGUI mobile app (port 8001 or `$PORT`, used for Render deploys).
 - `estrategia/` – strategy docs and analysis scripts (`estrategia/analisis/`).
+- `.claude/skills/rival/` – `/rival` skill: live Battle Tower advice for a named trainer (uses `estrategia/analisis/rival.py`).
 
 ## Conventions
 - Run every script from the repo root (paths like `data/...` are relative to it).

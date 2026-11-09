@@ -3,6 +3,7 @@
 # - tipos: opcional si el Pokémon aparece en los datos de la Torre; obligatorio si no.
 # - movimientos: si uno no aparece en los datos, escríbelo como "Nombre:Tipo" (ej. "Moonblast:Fairy").
 # - velocidad: stat de velocidad a nivel 50, calculada desde las capturas (stats reales + Juez de IVs).
+# - stats: PS/Atk/Def/SpA/SpD/Vel a nivel 50 (los usa rival.py para estimar daño).
 #
 # Datos REALES de las capturas del 2026-11-08 (movimientos y stats: 20.29.32*.jpeg).
 # Stats nv. 50 = PS/Atk/Def/SpA/SpD/Vel.
@@ -12,22 +13,27 @@ pokemon:
     habilidad: Intimidate
     movimientos: [Dragon Dance, Waterfall, Earthquake, Crunch]
     velocidad: 144
+    stats: [166, 176, 99, 72, 120, 144]   # nv50 PS/Atk/Def/SpA/SpD/Vel
   Gastrodon:     # Bold · Storm Drain · Leftovers · nv50: 209/87/128/111/102/59 · EVs ≈ 252 PS / 252 Def
     habilidad: Storm Drain
     movimientos: [Ice Beam, Earth Power, Scald, Recover]
     velocidad: 59
+    stats: [209, 87, 128, 111, 102, 59]   # nv50 PS/Atk/Def/SpA/SpD/Vel
   Roserade:      # Timid · Natural Cure · Focus Sash · nv50: 132/81/85/176/122/155 · EVs ≈ 252 SpA / 252 Vel
     habilidad: Natural Cure
     movimientos: [Giga Drain, Sludge Bomb, Shadow Ball, Dazzling Gleam]
     velocidad: 155
+    stats: [132, 81, 85, 176, 122, 155]   # nv50 PS/Atk/Def/SpA/SpD/Vel
   Scizor:        # Careful · Technician · Sitrus Berry · nv50: 176/180/116/66/106/80 · EVs ≈ 248 PS / 252 Atk
     habilidad: Technician
     movimientos: [Swords Dance, X-Scissor, Aerial Ace, Bullet Punch]
     velocidad: 80
+    stats: [176, 180, 116, 66, 106, 80]   # nv50 PS/Atk/Def/SpA/SpD/Vel
   Dragonite:     # Bashful · Inner Focus · Dragon Fang · nv50: 185/166/118/121/118/105 · EVs repartidos
     habilidad: Inner Focus
     movimientos: [Aqua Tail, Fly, Dragon Dance, Outrage]
     velocidad: 105
+    stats: [185, 166, 118, 121, 118, 105]   # nv50 PS/Atk/Def/SpA/SpD/Vel
   # PROPUESTA DE CRIANZA (no existe todavía): Garchomp Jolly 252 Atk / 252 Vel, IVs 31.
   # El Garchomp actual (Docile · Sand Veil · nv 56) no se usa en la Torre.
   Garchomp_criado:
@@ -35,6 +41,7 @@ pokemon:
     habilidad: Rough Skin
     movimientos: [Earthquake, Dragon Claw, Stone Edge, Swords Dance]
     velocidad: 169
+    stats: [184, 182, 115, 90, 105, 169]   # nv50 PS/Atk/Def/SpA/SpD/Vel
   # Descartado por decisión del usuario: Infernape (Hasty · Iron Fist · Black Belt · nv 85).
 
 equipos:
