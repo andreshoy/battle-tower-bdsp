@@ -11,8 +11,10 @@ Responde siempre en español.
 ## 1. Extrae los datos del mensaje
 - **Entrenador:** nombre y, si viene, la clase. El usuario escribe a la española o con errores ("laidy", "pokefan",
   "Ezequiel"); el script tolera eso.
-- **Set** (1-7) y **equipo** (A/B/C), si los da. Si no da el set, deduce por el número de batalla: Set 1 = batallas 1-7,
-  Set 2 = 8-14, …, Set 7 = 43-49. Desde la 50 es el Set 7.
+- **Set** (1-7) y **equipo** (A/B/C), si los da. Si no dice el equipo, el script omite los **Team A** cuando el
+  entrenador tiene otros: el usuario casi solo pide ayuda desde los Team B. Pasa `--team A` solo si lo pide. Si no da el set, deduce por el número de batalla: Set 1 = batallas 1-7,
+  Set 2 = 8-14, …, Set 7 = 43-49. Después de la 49 los sets se reinician: 50-56 = Set 1, 57-63 = Set 2, …,
+  92-98 = Set 7, 99-100 = Set 1 (set = (batalla − 50) // 7 % 7 + 1).
 - **Qué Pokémon sacó el rival** y **quién tiene él en campo**, si lo dice. Si no dice quién tiene en campo, mira la
   tabla *Orden para cada set* de `estrategia/protocolo_racha.md` para saber con quién empezó.
 
@@ -26,7 +28,9 @@ Responde siempre en español.
 - **Si sabes qué sacó el rival, usa `--plan` en vez de `--resumen`** (incluye el resumen). Simula la batalla completa,
   3 contra 3, turno a turno, y compara las tres formas de empezar (quedarte o cambiar a cada uno). Para cada una
   muestra la línea completa: quién enfrenta a cada Pokémon rival según a quién saque después, y con cuánta vida
-  quedan los tuyos. Ordena por el **peor caso** y, si hay empate, pone primero quedarse.
+  quedan los tuyos. Ordena por el **peor caso** (vida total que te queda, más un poco por cada Pokémon en pie) y, si hay empate, pone
+  primero quedarse. Así aprovecha a los 3: si dejar caer a uno casi KO para que otro entre gratis le ahorra
+  mucha vida al resto, lo propone.
 - **Haz UNA sola llamada.** Si el usuario dijo qué sacó el rival, pasa `--saco <Pokémon>`: el script elige ese equipo
   (y el set, si no lo dio).
 - `--resumen` da una línea por Pokémon rival con las 2 mejores respuestas (ataque, % de daño, golpes para KO,
@@ -41,6 +45,8 @@ El daño estimado ya incluye STAB, efectividad, habilidades (Roca Sólida, Multi
 El ranking del resumen es orientativo: revísalo con los criterios del punto 3.
 
 ## 3. Decide con criterio (no solo con la tabla)
+- **No sigas a ciegas las ideas tácticas del usuario** (él mismo lo pidió): si propone otra jugada, compárala con los
+  números y dile cuál conviene.
 - **El objetivo es ganar la batalla completa con tus 3**, no ganar cada enfrentamiento por separado. Con `--plan`,
   toma la opción 1 y su línea como base de la respuesta: el **Si saca** de cada Pokémon rival sale de esa línea.
   Cámbiala solo si un riesgo que la simulación no ve lo hace peligroso (abajo).

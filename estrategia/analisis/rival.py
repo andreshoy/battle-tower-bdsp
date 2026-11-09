@@ -365,7 +365,9 @@ def play(team, state, moves, r, rhp, rsash, bench, active, free, intim, depth=0,
         txt += f": {res} · quedan {', '.join(f'{n} {max(v, 0):.0%}' for n, v in h.items())}"
         lines = [pad + txt]
         if rh <= 0 and not bench:
-            score = 10 + sum(1 + v for v in h.values() if v > 0)
+            # Vida total que queda (colchón por si el daño real sale peor) y un cuarto de punto por cada uno en pie:
+            # sacrificar a uno casi KO para que otro entre gratis vale si le ahorra más de ~25% de vida a los demás.
+            score = 10 + sum(max(v, 0) + .25 * (v > 0) for v in h.values())
             lines[-1] += '  ✓ GANAS'
         elif rh <= 0:
             score, sub = None, []
@@ -458,13 +460,21 @@ def main():
         if hit:
             saco = species[hit[0]]
             keys = rows.loc[rows['pokemon_name'] == species[hit[0]], ['Set', 'Team']].drop_duplicates()
+            if not args.team and (keys['Team'] != 'Team A').any():
+                keys = keys[keys['Team'] != 'Team A']  # desde el 2.º ciclo de la racha salen los Team B en adelante
             if not args.set and len(keys) > 1:
                 keys = keys.tail(1)  # sin set indicado: el más alto
             rows = rows.merge(keys, on=['Set', 'Team'])
             args.set = args.set or keys.iloc[0]['Set'].replace('Set ', '')
+    # Sin equipo indicado, los Team A se omiten si el entrenador tiene otros (B en adelante es lo que importa).
+    skipped_a = not args.team and not saco and (rows['Team'] == 'Team A').any() and (rows['Team'] != 'Team A').any()
+    if skipped_a:
+        rows = rows[rows['Team'] != 'Team A']
     others = [m for m in matches[1:]]
     classes = ', '.join(sorted(set(rows['trainer_class'].fillna('Boss'))))
     print(f"# {classes} {name}" + (f" — Set {args.set}" if args.set else '') + (f", Team {args.team.upper()}" if args.team else ''))
+    if skipped_a:
+        print('(Team A omitido; pásalo con --team A si lo necesitas)')
     if others:
         print(f'(otros nombres parecidos: {", ".join(others)})')
     if rows.empty:

@@ -10,7 +10,7 @@
 | Juego | Perla Reluciente |
 | Modo | Single, **Clase Normal** (la racha cuenta en cualquier clase) |
 | Mejor racha | **89** |
-| Estrellas | 3/5 (faltan racha de 100 y Pokédex Nacional) |
+| Estrellas | 4/5 (falta la Pokédex Nacional) |
 | Equipo actual | Gyarados / Gastrodon / Roserade |
 | Recomendación | **Mantener el equipo actual** y jugar con [matchups.md](matchups.md) → [equipo.md](equipo.md) |
 
@@ -39,5 +39,5 @@ Desde la raíz del repo:
 .venv/bin/python estrategia/analisis/matchups.py      # regenera matchups.md para el equipo 'actual'
 .venv/bin/python estrategia/analisis/rival.py Mikaela --set 2 --team B   # un entrenador, con daño estimado
 ```
-Supuesto de los scripts: a partir de la batalla 50 de la Clase Normal los rivales salen del **Set 7**. Si en el
-juego ves rivales de otros Sets, se ajusta con `--sets "Set 6,Set 7"`.
+Después de la batalla 49 los sets se reinician (50-56 = Set 1, 57-63 = Set 2, …, 92-98 = Set 7, 99-100 = Set 1). Para analizar varios sets a la vez, usa
+`--sets "Set 6,Set 7"`.

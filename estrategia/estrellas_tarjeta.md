@@ -8,10 +8,10 @@ Las estrellas se pueden conseguir en cualquier orden.
 | 1 | Derrotar al Alto Mando y a la Campeona | ✅ (Hall of Fame 16/10/2022) |
 | 2 | Conseguir **100 estatuas distintas** en el Gran Subsuelo | ✅ (113 variantes) |
 | 3 | Ganar un **Concurso** en **rango Maestro** (cualquier categoría) | ✅ (Maestro en Belleza, Ternura e Ingenio) |
-| 4 | Racha de **100 victorias** en la Torre Batalla | [ ] (mejor racha: 89) |
-| 5 | Completar la **Pokédex Nacional** | [ ] (389 atrapados; meta: 484 = 493 − 9 singulares) |
+| 4 | Racha de **100 victorias** en la Torre Batalla | ✅ (2026-11-09) |
+| 5 | Completar la **Pokédex Nacional** | [ ] (306 atrapados y 389 vistos; meta: 484 = 493 − 9 singulares; faltan 178) |
 
-**Estado al 2026-11-08: 3 estrellas (tarjeta plateada).** Faltan la racha de 100 y la Pokédex Nacional.
+**Estado al 2026-11-09: 4 estrellas (tarjeta dorada).** Solo falta la Pokédex Nacional.
 
 ---
 
@@ -48,6 +48,7 @@ La racha cuenta en Single o Doble y en cualquier clase. Toda la estrategia está
 [equipo.md](equipo.md), [protocolo_racha.md](protocolo_racha.md) y [amenazas.md](amenazas.md).
 
 ## 5. Pokédex Nacional completa
+- Números que faltan: [pokedex_faltantes.md](pokedex_faltantes.md). Plan por fases: [plan_pokedex.md](plan_pokedex.md).
 - Hay que **atrapar** las 493 especies **excepto los singulares** (Mew, Celebi, Jirachi, Deoxys, Phione, Manaphy,
   Darkrai, Shaymin, Arceus). La recompensa es el diploma y el **Amuleto Iris** (Shiny Charm) en el Gran Lago Hotel.
 - **Exclusivos de Diamante Brillante** (no salen en Perla Reluciente; hay que **intercambiarlos**):

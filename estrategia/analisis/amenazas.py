@@ -39,8 +39,8 @@ def main():
 
     out.append('# Amenazas rivales: Single, Clase Normal\n')
     out.append(f'> Generado por `estrategia/analisis/amenazas.py` con los Sets: **{", ".join(sets)}** + Palmer.  ')
-    out.append('> Supuesto: a partir de la batalla 50 de la Clase Normal los rivales salen del Set más alto (Set 7). '
-               'Confírmalo en el juego comparando a tus rivales con la app.\n')
+    out.append('> Después de la batalla 49 los sets se reinician (50-56 = Set 1, …, 92-98 = Set 7). '
+               'Por defecto se analiza el Set 7, el más difícil.\n')
     out.append(f'- Sets de Pokémon en el pool: **{n}**')
     out.append(f'- Entrenadores distintos: **{pool["trainer_name"].nunique()}**')
     out.append(f'- Especies distintas: **{pool["pokemon_name"].nunique()}**\n')

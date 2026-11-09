@@ -1,7 +1,7 @@
 # Amenazas rivales: Single, Clase Normal
 
 > Generado por `estrategia/analisis/amenazas.py` con los Sets: **Set 7** + Palmer.  
-> Supuesto: a partir de la batalla 50 de la Clase Normal los rivales salen del Set más alto (Set 7). Confírmalo en el juego comparando a tus rivales con la app.
+> Después de la batalla 49 los sets se reinician (50-56 = Set 1, …, 92-98 = Set 7). Por defecto se analiza el Set 7, el más difícil.
 
 - Sets de Pokémon en el pool: **312**
 - Entrenadores distintos: **71**

@@ -60,7 +60,8 @@ La guía completa, rival por rival, está en [matchups.md](matchups.md).
 ## Orden en cada serie
 Cambia según el set y según Palmer: ver la tabla **Orden para cada set** y los planes contra Palmer en
 [protocolo_racha.md](protocolo_racha.md). Resumen: Roserade primero en los Sets 1, 4 y 5; Gastrodon en los Sets 2, 3 y 6,
-y 7 (incluido Palmer en la 49: cambia a Gyarados si saca a Cresselia o Regigigas); Gastrodon desde la 50.
+y 7 (incluido Palmer en la 49: cambia a Gyarados si saca a Cresselia o Regigigas). Desde la 50 los sets se reinician
+(50-56 = Set 1, …): usa el orden del set que toque.
 El orden queda fijo durante las 7 batallas de cada serie.
 
 ## Garchomp: ¿vale la pena criarlo?
