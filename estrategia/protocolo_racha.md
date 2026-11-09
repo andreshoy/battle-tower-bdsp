@@ -5,25 +5,33 @@ Llegaste a 89: el equipo funciona. Las rachas largas casi siempre se pierden por
 
 ## Antes de entrar
 - **Guarda** antes de cada sesión. Apagar la consola a mitad de un combate o de una serie sin guardar **cuenta como derrota**.
-- Puedes descansar y cambiar de equipo **solo hasta la batalla 4 de cada serie de 7**. Las batallas 5, 6 y 7 se
-  juegan con el mismo equipo.
+- Puedes descansar y cambiar el equipo y el orden **antes de la batalla 1 y hasta antes de la batalla 5** de cada
+  serie. Las batallas 5, 6 y 7 se juegan con el mismo equipo y orden (fuente: altissimo1).
 - Ten abierta la app (`ui/app.py` o `index.html`) en el celular.
 
-## Orden para cada serie de 7: **Gastrodon primero**
-El orden solo se elige al empezar cada serie, y el rival saca primero a uno de sus 3 Pokémon al azar.
-Ponderando como el juego (entrenador al azar → equipo al azar → primer Pokémon al azar) sobre el Set 7:
+## Orden para cada set
+Cada set de la página es una serie de 7 batallas: Set 1 = batallas 1-7, Set 2 = 8-14, …, Set 7 = 43-49.
+Desde la 50 los rivales siguen saliendo del **Set 7** (supuesto; ver [amenazas.md](amenazas.md)).
+El rival saca primero a uno de sus 3 Pokémon al azar. Por eso el líder se eligió ponderando como el juego
+(entrenador al azar → equipo al azar → primer Pokémon al azar) contra los rivales Single de cada set.
 
-| Líder | Enfrentamiento favorable | Amenazado y más lento que el rival |
-|---|---|---|
-| **Gastrodon** | **55%** | 10% |
-| Gyarados | 29% | 10% |
-| Roserade | 20% | 9% |
+| Set | Batallas | Orden | Líder: favorable / amenazado y más lento | Motivo |
+|---|---|---|---|---|
+| 1 | 1-7 | **Roserade** → Gastrodon → Gyarados | 39% / 0% (Gastrodon 42% / 7%) | Casi igual que Gastrodon, pero sin riesgo |
+| 2 | 8-14 | **Gastrodon** → Roserade → Gyarados | 47% / 5% (Roserade 32% / 0%) | Gastrodon claramente mejor |
+| 3 | 15-21 | **Gastrodon** → Roserade → Gyarados | 44% / 12% (Roserade 35% / 2%) | **Palmer (batalla 21)**: Gastrodon no tiene debilidades contra su equipo |
+| 4 | 22-28 | **Roserade** → Gastrodon → Gyarados | 35% / 0% (Gastrodon 41% / 13%) | Gastrodon corre más riesgo en este set (muchos Planta) |
+| 5 | 29-35 | **Roserade** → Gastrodon → Gyarados | 28% / 4% (Gastrodon 36% / 16%) | Igual que el Set 4 |
+| 6 | 36-42 | **Gastrodon** → Gyarados → Roserade | 46% / 13% (Roserade 13% / 13%) | Roserade sufre mucho en este set |
+| 7 | 43-46 | **Gastrodon** → Gyarados → Roserade | 55% / 10% (Gyarados 29% / 10%) | El mejor líder contra el Set 7 |
+| 7 | **47-49** | **Gyarados** → Gastrodon → Roserade | — | **Palmer (batalla 49)**: Gyarados le gana a sus 3 Pokémon (ver abajo) |
+| 50+ | 50-100 | **Gastrodon** → Gyarados → Roserade | 55% / 10% | Rivales del Set 7 |
 
-**Orden recomendado: Gastrodon → Gyarados → Roserade**, en todas las series. Por qué funciona:
-- Gastrodon es inmune a Agua y a Eléctrico y aguanta mucho, así que casi siempre puede quedarse o cambiar sin
-  perder mucha vida.
-- Roserade guarda su Banda Focus intacta para cuando entre.
-- Gyarados conserva Intimidación para usarla al entrar a mitad del combate.
+- **Cambio a mitad del Set 7:** se puede descansar y cambiar el equipo hasta antes de la batalla 5 de cada serie
+  (fuente: altissimo1; compruébalo en el juego). Entonces: juega las batallas 43-46 con Gastrodon primero, **descansa
+  después de la 46** y cambia a Gyarados primero para las batallas 47-49. Si el juego no te deja, usa Gastrodon
+  primero en todo el Set 7 y cambia a Gyarados en cuanto Palmer saque a Cresselia o a Regigigas.
+- El 2.º y el 3.º los eliges tú cuando cae uno. El orden de la tabla es solo el que conviene dejar puesto.
 
 **Única debilidad de Gastrodon: Planta, que le pega x4.** Qué hacer si el rival sale con uno de estos:
 
@@ -65,9 +73,24 @@ Detalle completo en [amenazas.md](amenazas.md).
 | **Canto Mortal** | Politoed, Altaria | Cambia de Pokémon antes de que termine el contador |
 
 ## Palmer
-Según los datos, Palmer aparece en las batallas 21 y 49 de la Clase Normal. Si vuelve a aparecer después, su equipo
-del Set 7 es Cresselia (Paz Mental + Poder Reserva), Regigigas (Inicio Lento) y Heatran (Polvo Brillo).
-Lo importante: **no dejes que Cresselia acumule Paz Mental**, y aprovecha los 5 turnos de Inicio Lento de Regigigas.
+El primer Pokémon de Palmer también es aleatorio. Datos completos en [amenazas.md](amenazas.md).
+
+### Batalla 21 (Set 3): Milotic, Rhyperior, Dragonite — sal con Gastrodon
+Ninguno de los tres le pega súper eficaz a Gastrodon.
+| Si sale | Plan |
+|---|---|
+| **Rhyperior** (Roca Sólida, Cinta Experto, Vel 45) | **Gastrodon → Escaldar** (x4; Roca Sólida lo reduce algo, pero su Def. Especial es 65). Su Rayo no te afecta y Rayo Hielo te pega neutral |
+| **Dragonite** (Multiescamas, Lupa, Vel 119) | **Gastrodon → Rayo Hielo** (x4). Multiescamas reduce a la mitad el primer golpe, así que pueden hacer falta 2. Acua Cola no te afecta por Colector. Alternativa: Roserade → Brillo Mágico (x2), es más rápida, y la Banda Focus la salva de un golpe |
+| **Milotic** (Escama Especial, Baya Aslac, Vel 91) | Su Hidrobomba no le hace nada a Gastrodon (y le sube el Ataque Especial), pero Gastrodon tampoco le hace mucho. **Cambia a Roserade → Gigadrenado** (x2): es más rápida y Cura Natural le quita el sueño si te duerme con Hipnosis |
+| No uses a Gyarados | Rayo de Rhyperior (x4) y Roca Afilada de Dragonite (x2) |
+
+### Batalla 49 (Set 7): Cresselia, Regigigas, Heatran — sal con Gyarados
+| Si sale | Plan |
+|---|---|
+| **Heatran** (Absorbe Fuego, **Polvo Brillo**, Vel 97) | **Gyarados → Terremoto** (x4). Es inmune a su Tierra Viva y resiste Lluvia Ígnea y Foco Resplandor. Si fallas por el Polvo Brillo, repite. Respaldo: Gastrodon → Tierra Viva (x4) |
+| **Regigigas** (Inicio Lento, Baya Chople, Vel 121) | Sus primeros **5 turnos** tiene la mitad de Ataque y Velocidad: **Danza Dragón** 1-2 veces (aprovecha cuando use Protección) y luego Cascada o Terremoto. Tiene Roca Afilada (x2 contra Gyarados), así que acábalo **antes** de que termine Inicio Lento |
+| **Cresselia** (Levitación, Restos, Vel 150) | Es más rápida que Gyarados sin mejoras. **Triturar** (x2, físico: Paz Mental no la protege) desde el primer turno. Si usa Sustituto, rómpelo con Triturar. No dejes que acumule Paz Mental, porque cada mejora hace más fuerte su Poder Reserva |
+| No uses a Roserade | Cresselia (Psíquico), Regigigas (Puño Hielo) y Heatran (Fuego) le pegan súper eficaz |
 
 ## Después de una derrota
 Anota en `estrategia/derrotas.md` el número de batalla, el rival, qué pasó y qué cambiarías.

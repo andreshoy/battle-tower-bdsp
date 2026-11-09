@@ -58,8 +58,9 @@ Cómo enfrentarlos con el equipo actual:
 La guía completa, rival por rival, está en [matchups.md](matchups.md).
 
 ## Orden en cada serie
-**Gastrodon → Gyarados → Roserade.** Gastrodon tiene enfrentamiento favorable contra el 55% de los primeros Pokémon
-rivales posibles (Gyarados 29%, Roserade 20%). Las reglas de cambio están en [protocolo_racha.md](protocolo_racha.md).
+Cambia según el set y según Palmer: ver la tabla **Orden para cada set** y los planes contra Palmer en
+[protocolo_racha.md](protocolo_racha.md). Resumen: Roserade primero en los Sets 1, 4 y 5; Gastrodon en los Sets 2, 3 y 6,
+y en el Set 7 hasta la batalla 46; **Gyarados en las batallas 47-49 (Palmer)**; Gastrodon desde la 50.
 
 ## Garchomp: ¿vale la pena criarlo?
 **Es opcional; la mejora es marginal.**
