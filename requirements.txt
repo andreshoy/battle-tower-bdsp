@@ -3,3 +3,4 @@ pandas
 pyarrow
 requests
 beautifulsoup4
+pyyaml

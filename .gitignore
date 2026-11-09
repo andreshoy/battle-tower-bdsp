@@ -5,3 +5,11 @@ __pycache__/
 data/pokemon_types_reference.parquet
 scrapers/lloyd.html
 scrapers/lloyd_full.html
+.venv/
+.DS_Store
+# Capturas personales de stats (quita estas líneas si quieres versionarlas)
+estrategia/capturas/*.png
+estrategia/capturas/*.jpg
+estrategia/capturas/*.jpeg
+estrategia/capturas/*.PNG
+estrategia/capturas/*.JPG

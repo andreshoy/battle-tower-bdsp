@@ -1,0 +1,21 @@
+# Equipos candidatos para la racha de 100 (Single, Clase Normal).
+# Nombres de Pokémon, habilidades y movimientos en INGLÉS (como en los datos de Bulbapedia).
+# - tipos: opcional si el Pokémon aparece en los datos de la Torre; obligatorio si no.
+# - movimientos: si uno no aparece en los datos, escríbelo como "Nombre:Tipo" (ej. "Moonblast:Fairy").
+# - velocidad: stat de velocidad real a nivel 50 (la que ves en la captura), opcional.
+#
+# EJEMPLO (reemplazar con tus Pokémon cuando lleguen las capturas):
+equipos:
+  ejemplo:
+    - nombre: Garchomp
+      habilidad: Rough Skin
+      movimientos: [Earthquake, Outrage, Stone Edge, Swords Dance]
+      velocidad: 169
+    - nombre: Metagross
+      habilidad: Clear Body
+      movimientos: [Meteor Mash, Zen Headbutt, Earthquake, Bullet Punch]
+      velocidad: 122
+    - nombre: Milotic
+      habilidad: Marvel Scale
+      movimientos: [Scald, Ice Beam, Recover, Toxic]
+      velocidad: 101
