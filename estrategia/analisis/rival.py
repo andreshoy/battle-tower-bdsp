@@ -8,6 +8,8 @@ Uso (desde la raíz del repo):
     .venv/bin/python estrategia/analisis/rival.py Mikaela --set 2 --team B
     .venv/bin/python estrategia/analisis/rival.py "Ezequiel" --set 2 --clase youngster
     .venv/bin/python estrategia/analisis/rival.py chaz --clase "school kid" --saco lickitung --resumen   # rápido
+    .venv/bin/python estrategia/analisis/rival.py callie --saco marshtomp --campo gastrodon --resumen     # ¿me quedo?
+    .venv/bin/python estrategia/analisis/rival.py callie --saco marshtomp --campo gastrodon --plan        # 3 contra 3
 """
 import argparse
 import difflib
@@ -153,8 +155,12 @@ def report(team, rows, mtypes):
             print('       ' + ' · '.join(dmg))
 
 
-def summary(team, rows, mtypes):
-    """Una línea por Pokémon rival con las dos mejores respuestas (golpes para KO, velocidad, riesgo)."""
+def summary(team, rows, mtypes, campo=None, saco=None):
+    """Una línea por Pokémon rival con las dos mejores respuestas (golpes para KO, velocidad, riesgo).
+
+    Con `campo`, contra el Pokémon que sacó el rival (o contra todos si no se sabe) evalúa primero a tu Pokémon en
+    campo: si no recibe súper eficaz y gana en 3 golpes o menos, conviene quedarse y guardar a los otros dos.
+    """
     for _, r in rows.iterrows():
         rtypes = [r['type1'], r['type2'] if isinstance(r['type2'], str) else None]
         moves = pokemon_moves(r)
@@ -187,9 +193,222 @@ def summary(team, rows, mtypes):
         for cost, nm, (mv, lo, hi, mult), hits, faster, threats in options[:2]:
             print(f"    → {nm}: {mv} x{mult:g} {lo:.0%}-{hi:.0%} ({hits} golpe{'s' if hits > 1 else ''}), "
                   f"{'más rápido' if faster else 'más lento'}" + (f", recibe SE de {', '.join(threats)}" if threats else ''))
+        if campo and (saco is None or r['pokemon_name'] == saco):
+            mine = next((o for o in options if o[1] == campo), None)
+            if mine:
+                _, nm, (mv, lo, hi, mult), hits, faster, threats = mine
+                stay = not threats and hits <= 3
+                print(f"    = {nm} en campo: {mv} x{mult:g} {lo:.0%}-{hi:.0%} ({hits} golpe{'s' if hits > 1 else ''}), "
+                      f"{'más rápido' if faster else 'más lento'}" + (f", recibe SE de {', '.join(threats)}" if threats else '')
+                      + f" → {'QUÉDATE' if stay else 'CAMBIA'}")
         weak = [o[1] for o in options if o[5] and not o[4]]
         if weak:
             print(f"    ✗ evitar: {', '.join(weak)} (recibe SE y es más lento)")
+        # Buena respuesta: gana en 2 golpes sin recibir súper eficaz, o en 1 golpe siendo más rápido.
+        good = [o[1] for o in options if (not o[5] and o[3] <= 2) or (o[4] and o[3] == 1)]
+        if len(good) == 1:
+            print(f"    ★ única respuesta buena: {good[0]} (guárdalo para este)")
+        elif not good:
+            print("    ★ ninguna respuesta buena: llega con el que tenga más vida")
+
+
+# --- Plan de batalla completo (--plan) ---------------------------------------------------------------------------
+# Simula 3 contra 3 turno a turno con daño promedio: tú eliges el mejor ataque; el rival, el más dañino (o el que te
+# deja KO, con prioridad si la tiene). Cada cambio regala un golpe al que entra. Ignora estados, cambios de stats,
+# críticos y fallos; por eso es una guía para comparar planes, no una predicción exacta.
+MOVES_PATH = 'data/moves_reference.parquet'
+BOOST_ITEMS = {
+    'Miracle Seed': 'Grass', 'Charcoal': 'Fire', 'Mystic Water': 'Water', 'Never-Melt Ice': 'Ice', 'Magnet': 'Electric',
+    'Black Belt': 'Fighting', 'Poison Barb': 'Poison', 'Soft Sand': 'Ground', 'Sharp Beak': 'Flying',
+    'Twisted Spoon': 'Psychic', 'Silver Powder': 'Bug', 'Hard Stone': 'Rock', 'Spell Tag': 'Ghost',
+    'Dragon Fang': 'Dragon', 'Black Glasses': 'Dark', 'Metal Coat': 'Steel', 'Silk Scarf': 'Normal',
+}
+WEIGHT_KG = {'Gyarados': 235, 'Gastrodon': 29.9, 'Roserade': 14.5, 'Scizor': 118, 'Dragonite': 210,
+             'Garchomp_criado': 95}
+SKIP_MOVES = {'Counter', 'Mirror Coat', 'Metal Burst', 'Endeavor', 'Final Gambit', 'Present', 'Fling', 'Fake Out',
+              'Fissure', 'Horn Drill', 'Guillotine', 'Sheer Cold', 'Explosion', 'Self-Destruct', 'Focus Punch'}
+
+
+def load_moves():
+    if not os.path.exists(MOVES_PATH):
+        sys.exit(f'✗ Falta {MOVES_PATH}: ejecuta .venv/bin/python scrapers/generate_moves_reference.py')
+    return pd.read_parquet(MOVES_PATH).set_index('move').to_dict('index')
+
+
+def weight_power(kg):
+    return next(p for lim, p in ((10, 20), (25, 40), (50, 60), (100, 80), (200, 100), (1e9, 120)) if kg < lim)
+
+
+def rival_hit(r, move, me, intim, cur, moves):
+    """(daño como fracción de tus PS, daño esperado con precisión, prioridad) de un ataque del rival, o None."""
+    info = moves.get(move)
+    if not info or info['damage_class'] == 'status' or move in SKIP_MOVES:
+        return None
+    hp = me['stats'][0]
+    if move in ('Night Shade', 'Seismic Toss'):
+        return 50 / hp, 50 / hp, 0
+    if move == 'Super Fang':
+        return cur / 2, cur / 2 * .9, 0
+    power = info['power']
+    if move in ('Low Kick', 'Grass Knot'):
+        power = weight_power(WEIGHT_KG.get(me['nombre'], 60))
+    elif move == 'Gyro Ball':
+        power = min(150, 25 * me['stats'][5] / max(1, int(r['spe'])))
+    elif move in ('Flail', 'Reversal'):
+        power = 40
+    elif move in ('Crush Grip', 'Heavy Slam'):
+        power = 100 if move == 'Crush Grip' else 80
+    if not power or pd.isna(power):
+        return None
+    if r['ability'] == 'Technician' and power <= 60:
+        power *= 1.5
+    phys = info['damage_class'] == 'physical'
+    a = int(r['atk'] if phys else r['spa'])
+    if phys and r['ability'] in ('Huge Power', 'Pure Power'):
+        a *= 2
+    if phys and intim and r['ability'] not in ('Clear Body', 'White Smoke', 'Hyper Cutter'):
+        a = a * 2 / 3
+    if (phys and r['item'] == 'Choice Band') or (not phys and r['item'] == 'Choice Specs'):
+        a *= 1.5
+    d = me['stats'][2] if phys else me['stats'][4]
+    mtype = info['type']
+    eff = effectiveness(mtype, me['tipos'], me['habilidad'])
+    if eff == 0:
+        return None
+    rtypes = [r['type1'], r['type2'] if isinstance(r['type2'], str) else None]
+    mod = eff * ((2 if r['ability'] == 'Adaptability' else 1.5) if mtype in rtypes else 1)
+    mod *= {'Life Orb': 1.3, 'Muscle Band': 1.1 if phys else 1, 'Wise Glasses': 1 if phys else 1.1}.get(r['item'], 1)
+    mod *= 1.2 if BOOST_ITEMS.get(r['item']) == mtype or (r['item'] == 'Expert Belt' and eff >= 2) else 1
+    hits = 1
+    if info['min_hits'] and not pd.isna(info['min_hits']):
+        hits = 5 if r['ability'] == 'Skill Link' else (2 if info['max_hits'] == 2 else 3)
+    base = int(int(int(2 * 50 / 5 + 2) * power * a / d) / 50) + 2
+    dmg = int(base * mod * .925) * hits / hp
+    acc = info['accuracy'] / 100 if info['accuracy'] and not pd.isna(info['accuracy']) else 1
+    return dmg, dmg * acc, int(info['priority'])
+
+
+def best_rival_move(r, me, intim, cur, moves):
+    opts = [(mv, *h) for mv in pokemon_moves(r) if (h := rival_hit(r, mv, me, intim, cur, moves))]
+    if not opts:
+        return None
+    kos = [o for o in opts if o[1] >= cur]
+    return max(kos, key=lambda o: (o[3], o[2])) if kos else max(opts, key=lambda o: o[2])
+
+
+def best_my_move(m, r):
+    rtypes = [r['type1'], r['type2'] if isinstance(r['type2'], str) else None]
+    opts = [(name, (lo + hi) / 2) for name, t in m['ataques'] if name in MOVE_DATA
+            for lo, hi, _, _ in [damage_range(m, name, t, r, rtypes, m['habilidad'])] if hi > 0]
+    return max(opts, key=lambda o: o[1]) if opts else None
+
+
+def take(hp, dmg, sash):
+    """Aplica daño; Banda Focus / Robustez dejan con 1 PS si estaba a vida completa (una sola vez)."""
+    if sash and hp >= .999 and dmg >= hp:
+        return .001, False
+    return hp - dmg, sash
+
+
+def duel(m, mhp, msash, r, rhp, rsash, intim, moves):
+    """1 contra 1 hasta que uno cae. Devuelve (PS tuyos, Banda tuya, PS rival, Banda rival, tu ataque, turnos)."""
+    mine = best_my_move(m, r)
+    sitrus = r['item'] == 'Sitrus Berry'
+    recovers = 0
+    for turn in range(1, 31):
+        theirs = best_rival_move(r, m, intim, mhp, moves)
+        heal = ('Recover' in m['movs'] and mhp <= .5 and recovers < 3 and theirs and theirs[1] < .45
+                and (not mine or mine[1] < rhp))
+        rival_first = theirs and (theirs[3] > 0 or int(r['spe']) >= m['stats'][5])
+        for actor in (('r', 'm') if rival_first else ('m', 'r')):
+            if actor == 'm':
+                if heal:
+                    mhp, recovers = min(1, mhp + .5), recovers + 1
+                elif mine:
+                    rhp, rsash = take(rhp, mine[1], rsash)
+                    if sitrus and 0 < rhp <= .5:
+                        rhp, sitrus = rhp + .25, False
+            elif theirs:
+                mhp, msash = take(mhp, theirs[1], msash)
+            if mhp <= 0 or rhp <= 0:
+                return max(mhp, 0), msash, max(rhp, 0), rsash, ('Recover' if heal else mine and mine[0]), turn
+        if m['objeto'] == 'Leftovers':
+            mhp = min(1, mhp + 1 / 16)
+    return mhp, msash, rhp, rsash, mine and mine[0], 30
+
+
+def play(team, state, moves, r, rhp, rsash, bench, active, free, intim, depth=0, first=None):
+    """Mejor plan (puntaje, líneas) desde este punto. El rival elige al siguiente que más te perjudica."""
+    by_name = {m['nombre']: m for m in team}
+    hps, sashes = state
+    alive = [n for n in hps if hps[n] > 0]
+    choices = [(n, False) for n in alive] if free else [(active, False)] + [(n, True) for n in alive if n != active]
+    if first:  # fija la primera decisión para comparar las opciones de inicio
+        choices = [c for c in choices if c[0] == first]
+    pad = '    ' * depth
+    best = None
+    for name, switch in choices:
+        m, h, sa = by_name[name], dict(hps), dict(sashes)
+        rh, rs = rhp, rsash
+        entering = switch or free
+        it = (intim or (entering and m['habilidad'] == 'Intimidate'))
+        txt = f"{'Cambia a ' if switch else ('Entra ' if free else 'Quédate con ')}{name}"
+        if switch:
+            hit = best_rival_move(r, m, it, h[name], moves)
+            if hit:
+                h[name], sa[name] = take(h[name], hit[1], sa[name])
+                txt += f" (recibe {hit[0]} {min(hit[1], 1):.0%})"
+        if h[name] > 0:
+            h[name], sa[name], rh, rs, mv, turns = duel(m, h[name], sa[name], r, rh, rs, it, moves)
+            txt += f" → {mv} ×{turns}"
+        res = f"{r['pokemon_name']} KO" if rh <= 0 else f"cae {name}"
+        txt += f": {res} · quedan {', '.join(f'{n} {max(v, 0):.0%}' for n, v in h.items())}"
+        lines = [pad + txt]
+        if rh <= 0 and not bench:
+            score = 10 + sum(1 + v for v in h.values() if v > 0)
+            lines[-1] += '  ✓ GANAS'
+        elif rh <= 0:
+            score, sub = None, []
+            for i, nxt in enumerate(bench):
+                rest = bench[:i] + bench[i + 1:]
+                if not any(v > 0 for v in h.values()):
+                    s, ls = -(1 + len(rest)), []
+                else:
+                    s, ls = play(team, (h, sa), moves, nxt, 1.0, nxt['item'] == 'Focus Sash' or nxt['ability'] == 'Sturdy',
+                                 rest, name, False, False, depth + 1)
+                sub += [f"{pad}  Si sale {nxt['pokemon_name']}:"] + ls
+                score = s if score is None else min(score, s)
+            lines += sub
+        elif any(v > 0 for v in h.values()):
+            score, ls = play(team, (h, sa), moves, r, rh, rs, bench, None, True, False, depth)
+            lines += ls
+        else:
+            score = -(rh + len(bench))
+            lines[-1] += '  ✗ PIERDES'
+        if best is None or score > best[0]:
+            best = (score, lines)
+    return best
+
+
+def plan(team, rows, saco, campo, moves):
+    lead = rows[rows['pokemon_name'] == saco].iloc[0]
+    bench = [r for _, r in rows[rows['pokemon_name'] != saco].iterrows()]
+    hps = {m['nombre']: 1.0 for m in team}
+    sashes = {m['nombre']: m['objeto'] == 'Focus Sash' for m in team}
+    rsash = lead['item'] == 'Focus Sash' or lead['ability'] == 'Sturdy'
+    print(f"\nPLAN 3 contra 3 (empieza {campo} contra {saco}; peor caso según a quién saque después el rival):")
+    intim = next(m['habilidad'] == 'Intimidate' for m in team if m['nombre'] == campo)  # el líder ya entró
+    results = [(*play(team, (hps, sashes), moves, lead, 1.0, rsash, bench, campo, False, intim, first=m['nombre']),
+                m['nombre']) for m in team]
+    # Diferencias menores a 0.2 (≈ 20% de PS en total) son empate: entonces gana quedarse, que no regala un golpe.
+    top = max(r[0] for r in results)
+    results.sort(key=lambda x: (-(top if x[0] >= top - .2 else x[0]), x[2] != campo, -x[0]))
+    for i, (score, lines, name) in enumerate(results, 1):
+        verdict = 'GANAS' if score >= 10 else 'PIERDES'
+        tie = ' ≈ empate con la mejor' if i > 1 and score >= top - .2 else ''
+        print(f"\n{i}) {'Quédate con' if name == campo else 'Cambia a'} {name} → {verdict} en el peor caso "
+              f"(puntaje {score:.2f}{tie})")
+        print('\n'.join('   ' + line for line in lines))
 
 
 def main():
@@ -201,6 +420,8 @@ def main():
     parser.add_argument('--equipo', default='actual', help='equipo de equipo.yaml')
     parser.add_argument('--saco', help='Pokémon que sacó el rival: elige solo el equipo que lo contiene')
     parser.add_argument('--resumen', action='store_true', help='salida corta con la mejor opción por Pokémon rival')
+    parser.add_argument('--campo', help='tu Pokémon en campo (con --resumen dice si conviene quedarse)')
+    parser.add_argument('--plan', action='store_true', help='con --saco y --campo: simula los 3 contra 3 y compara planes')
     args = parser.parse_args()
 
     df = pd.read_parquet(FINAL_PATH)
@@ -218,6 +439,8 @@ def main():
         data = cfg['pokemon'][nm]
         member = resolve_member({'nombre': nm, **data}, mtypes, stypes)
         member['stats'] = data['stats']
+        member['objeto'] = data.get('objeto')
+        member['movs'] = [mv.partition(':')[0].strip() for mv in data.get('movimientos', [])]
         team.append(member)
 
     name = matches[0]
@@ -228,10 +451,12 @@ def main():
         rows = by_set if not by_set.empty else rows[(rows['Set'] == 'Boss') & (rows['Team'] == f'Set {args.set}')]
     if args.team:
         rows = rows[rows['Team'].str.upper().str.endswith(args.team.strip().upper())]
+    saco = None
     if args.saco:
         species = {norm(p): p for p in rows['pokemon_name'].unique()}
         hit = difflib.get_close_matches(norm(args.saco), species.keys(), n=1, cutoff=0.6)
         if hit:
+            saco = species[hit[0]]
             keys = rows.loc[rows['pokemon_name'] == species[hit[0]], ['Set', 'Team']].drop_duplicates()
             if not args.set and len(keys) > 1:
                 keys = keys.tail(1)  # sin set indicado: el más alto
@@ -247,7 +472,13 @@ def main():
         sys.exit('✗ Sin datos para ese Set/equipo. Disponible:\n' + avail.to_string())
     for team_name, g in rows.groupby(['Set', 'Team']):
         print(f'\n=== {team_name[0]} · {team_name[1]} ===')
-        (summary if args.resumen else report)(team, g, mtypes)
+        campo = next((m['nombre'] for m in team if args.campo and norm(m['nombre']) == norm(args.campo)), None)
+        if args.resumen or args.plan:
+            summary(team, g, mtypes, campo, saco)
+            if args.plan and campo and saco:
+                plan(team, g, saco, campo, load_moves())
+        else:
+            report(team, g, mtypes)
 
 
 if __name__ == '__main__':

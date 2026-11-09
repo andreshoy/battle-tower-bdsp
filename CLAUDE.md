@@ -9,6 +9,7 @@ The user writes in Spanish; keep docs and strategy files in Spanish.
   `battle_tower_bosses.parquet` (Palmer + Master Class bosses), `final_battle_tower_data.parquet` (merged + types).
 - `scrapers/` – Bulbapedia scrapers (`scrape_detailed_trainers.py`, `scrape_bosses.py`) and
   `generate_types_reference.py` (PokeAPI types → `data/pokemon_types_reference.parquet`, gitignored).
+  `generate_moves_reference.py` (PokeAPI move power/category → `data/moves_reference.parquet`, used by `rival.py --plan`).
 - `utils/merge_pokemon_data.py` – builds the final dataset (first 3 Pokémon of each regular team = Single, rest = Double). The user confirmed this data is correct: do not modify the data or this logic.
 - `utils/generate_static_html.py` – writes the standalone `index.html` (do not edit `index.html` by hand).
 - `ui/app.py` – NiceGUI mobile app (port 8001 or `$PORT`, used for Render deploys).

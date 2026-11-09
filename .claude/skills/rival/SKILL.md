@@ -18,8 +18,15 @@ Responde siempre en español.
 
 ## 2. Consulta los datos (desde la raíz del repo)
 ```bash
-.venv/bin/python estrategia/analisis/rival.py "<nombre>" [--clase "<clase>"] [--set <N>] [--team <A|B|C>] [--saco <Pokémon>] --resumen
+.venv/bin/python estrategia/analisis/rival.py "<nombre>" [--clase "<clase>"] [--set <N>] [--team <A|B|C>] [--saco <Pokémon>] [--campo <tu Pokémon>] --plan
 ```
+(Sin `--saco`, usa `--resumen` en lugar de `--plan`.)
+- Pasa siempre `--campo` con tu Pokémon en campo (el que dijo el usuario o el líder del set). El resumen añade una
+  línea `= <Pokémon> en campo: … → QUÉDATE / CAMBIA`.
+- **Si sabes qué sacó el rival, usa `--plan` en vez de `--resumen`** (incluye el resumen). Simula la batalla completa,
+  3 contra 3, turno a turno, y compara las tres formas de empezar (quedarte o cambiar a cada uno). Para cada una
+  muestra la línea completa: quién enfrenta a cada Pokémon rival según a quién saque después, y con cuánta vida
+  quedan los tuyos. Ordena por el **peor caso** y, si hay empate, pone primero quedarse.
 - **Haz UNA sola llamada.** Si el usuario dijo qué sacó el rival, pasa `--saco <Pokémon>`: el script elige ese equipo
   (y el set, si no lo dio).
 - `--resumen` da una línea por Pokémon rival con las 2 mejores respuestas (ataque, % de daño, golpes para KO,
@@ -34,9 +41,27 @@ El daño estimado ya incluye STAB, efectividad, habilidades (Roca Sólida, Multi
 El ranking del resumen es orientativo: revísalo con los criterios del punto 3.
 
 ## 3. Decide con criterio (no solo con la tabla)
+- **El objetivo es ganar la batalla completa con tus 3**, no ganar cada enfrentamiento por separado. Con `--plan`,
+  toma la opción 1 y su línea como base de la respuesta: el **Si saca** de cada Pokémon rival sale de esa línea.
+  Cámbiala solo si un riesgo que la simulación no ve lo hace peligroso (abajo).
+- La simulación usa daño promedio y no ve: críticos, fallos, estados (sueño, parálisis, confusión, Pataleta Floral),
+  bajadas de precisión (Ataque Arena), Sorpresa, Cinta Focus, Contraataque/Manto Espejo, OHKO, Explosión ni mejoras
+  (las tuyas tampoco: Danza Dragón). Si una opción gana con un margen muy justo (alguno queda con menos de ~20%) o
+  depende de uno de estos riesgos, prefiere la segunda si está cerca.
 - **Primero lo urgente:** si el Pokémon del usuario en campo recibe súper eficaz de un rival más rápido (sobre todo x4,
   como Planta contra Gastrodon o Eléctrico contra Gyarados), di de entrada que **cambie** y a quién.
-- Prefiere quien **deja KO de un golpe siendo más rápido**. Si nadie lo logra, el que aguanta mejor y gana en 2 golpes.
+- **Quédate siempre que se pueda, para guardar a los otros dos.** Si tu Pokémon en campo no recibe súper eficaz y lo
+  gana en 3 golpes o menos (`QUÉDATE` en el resumen), quédate aunque otro lo deje KO de un golpe. Cada cambio regala
+  un golpe gratis al rival, gasta la Banda Focus de Roserade y la Intimidación de Gyarados (solo sirve al entrar).
+  Esto vale sobre todo para Gastrodon, que aguanta mucho y tiene Recuperación.
+- **Guarda a cada Pokémon para el rival que solo él gana**, también al que está en campo. El resumen marca
+  `★ única respuesta buena: X` en cada Pokémon rival. Si tu Pokémon en campo es la única respuesta buena para **otro**
+  Pokémon del rival que todavía no ha salido, y otro de tus Pokémon gana al actual sin riesgo (KO en 1-2 golpes y sin
+  recibir súper eficaz), **cambia** para no gastarle vida. Excepción: quédate si el rival actual casi no le hace
+  daño (Gastrodon recupera con Recuperación y Restos). Lo mismo con las reservas: no gastes en el primero a quien
+  es la única respuesta para uno que viene después.
+- Cuando haya que cambiar o elegir reemplazo, prefiere quien **deja KO de un golpe siendo más rápido**. Si nadie lo
+  logra, el que aguanta mejor y gana en 2 golpes.
 - Ten en cuenta:
   - **Físico o especial.** Mira las stats defensivas del rival: Blissey tiene muy poca Defensa (usa a Gyarados) y
     mucha Defensa Especial.
@@ -53,16 +78,27 @@ El ranking del resumen es orientativo: revísalo con los criterios del punto 3.
   Banda Focus).
 
 ## 4. Formato de la respuesta
-Corto. Sin explicar el método.
+Solo instrucciones, sin explicaciones ni justificaciones. Nada de viñetas de "por qué", tablas ni párrafos.
+Siempre en este orden:
 
-1. Una línea para identificar: **Clase Nombre, Set N, equipo X**, con sus 3 Pokémon.
-2. Si ya sabes qué sacó el rival: **qué hacer ahora**, en negrita (quedarse o cambiar, y qué ataque usar), con 1-3
-   viñetas de por qué y los números clave (velocidad, % de daño).
-3. Una tabla **Si saca → Usa → Ojo** con los otros Pokémon del equipo (o con los tres, si no ha salido ninguno).
-4. Como mucho una línea final con un riesgo especial.
+1. **Clase Nombre, Set N, equipo X**: sus 3 Pokémon (una línea).
+2. **Quédate con <tu Pokémon en campo>** o **Cambia <tu Pokémon> → <cuál>** (una línea, en negrita).
+3. **Ataque:** qué movimiento usar contra el Pokémon que sacó el rival (y el 2.º golpe si hace falta).
+   Como mucho un dato entre paréntesis: x2, KO de 1 golpe o 2 golpes.
+4. **Si saca <otro Pokémon>:** <Pokémon recomendado> → <ataque>. Una línea por cada uno de los otros dos.
+5. Como mucho una línea **Ojo:** solo si hay un riesgo que cambia lo que hay que hacer (OHKO, sueño, Ataque Arena,
+   Banda Focus, Contraataque…).
 
-Ejemplo de tono (Parasol Lady Mikaela, Set 2, equipo B): «**Quédate con Gastrodon y usa Escaldar**: le pega x2 y lo
-deja KO de un golpe. Su Hierba Lazo te pega x4, pero solo te quita más o menos la mitad.»
+Si no ha salido ningún Pokémon todavía, omite los puntos 2 y 3 y pon una línea **Si saca** por cada uno de los tres.
+
+Ejemplo (Poké Fan Tate, Set 3, equipo A, sacó Linoone, Gastrodon en campo):
+
+**Poké Fan Tate, Set 3, equipo A**: Linoone, Monferno, Combusken.
+**Quédate con Gastrodon.**
+**Ataque:** Escaldar (2-3 golpes).
+**Si saca Monferno:** Gyarados → Cascada (KO de 1 golpe).
+**Si saca Combusken:** Gastrodon → Tierra Viva (KO de 1 golpe).
+**Ojo:** si Linoone usa Ataque Arena 2 veces, cambia de Pokémon.
 
 Si el usuario cuenta cómo terminó la batalla, o algo que contradice los datos (por ejemplo, un movimiento que no
 aparece), anótalo brevemente en `estrategia/derrotas.md` si fue una derrota, o avísale que los datos podrían estar mal.
