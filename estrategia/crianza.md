@@ -42,14 +42,25 @@ La **Cápsula Habilidad** solo cambia entre las dos habilidades normales.
 - Recordador de movimientos: Ciudad Pradera (Pastoria), con escamas corazón.
 
 ## Fichas de Pokémon a criar
-Se completa cuando decidamos el trío a partir de [equipo.md](equipo.md). Formato:
 
-```
-### <Pokémon>
-- Rol: …
-- Naturaleza: …        Habilidad: …        Objeto: …
-- EVs: …               IVs clave: …
-- Movimientos: …
-- Por qué: (qué amenazas del Set 7 cubre según cobertura.py)
-- Cómo conseguirlo: (ruta/Subsuelo, padres, movimientos huevo)
-```
+### Garchomp (opcional)
+Según [equipo.md](equipo.md), la mejora es marginal. Esta ficha es para criarlo como reserva.
+
+- **Rol:** atacante físico rápido; Danza Espada y luego barrer.
+- **Naturaleza:** Jolly (+Vel −SpA). **Habilidad:** Rough Skin (Piel Tosca, habilidad oculta).
+  Si no consigues la oculta, Sand Veil sirve.
+- **Objeto:** el que quede libre en el equipo (Banda Focus, Baya Ziuela o Restos no se pueden repetir); Cinta Elegida o Vidasfera.
+- **EVs:** 252 Atk / 252 Vel / 4 PS. **IVs clave:** Atk, Vel, PS y Def a 31.
+- **Movimientos:** Terremoto, Garra Dragón (o Enfado), Roca Afilada, Danza Espada.
+- **Stats esperados a nivel 50:** unos 183 PS / 182 Atk / **169 Vel**. Así supera a casi todo el Set 7, salvo los
+  muy rápidos (Jolteon, Crobat, Weavile, Starmie, Alakazam…).
+- **Cómo conseguirlo:**
+  1. **Padre base:** tu Garchomp actual (macho) o un Gible nuevo. Gible está en la Cueva Extravío (Wayward Cave,
+     entrada oculta bajo el Camino de Bicis) y en el Gran Subsuelo. Para Rough Skin, busca un Gible/Gabite en
+     el Gran Subsuelo que la tenga.
+  2. **Pareja:** cualquiera de tus 3 Ditto con **Lazo Destino**. Ninguno tiene IVs perfectos, así que irás
+     reemplazando a los padres con crías mejores. El Ditto Timid es el que mejores IVs ofensivos tiene.
+  3. **Naturaleza:** ninguno de tus Ditto es Jolly. Lo más rápido es criar por IVs y luego usar una **Menta
+     Alegre** (canje de PB). Otra opción es poner Piedra Eterna en un padre Jolly cuando lo tengas.
+  4. **EVs:** Brazal Recio (Atk) + Franja Recia (Vel) mientras entrenas, o vitaminas (Proteína y Carburante).
+  5. **IVs que falten:** Chapas, pero solo si lo subes a nivel 100.

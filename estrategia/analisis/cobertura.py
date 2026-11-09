@@ -10,10 +10,12 @@ Y para el equipo: rivales a los que nadie pega SE y rivales que amenazan a los t
 Uso (desde la raíz del repo):
     .venv/bin/python estrategia/analisis/cobertura.py                 # todos los equipos
     .venv/bin/python estrategia/analisis/cobertura.py --equipo actual
+    .venv/bin/python estrategia/analisis/cobertura.py --trios          # ranking de todas las combinaciones de 3
 """
 import argparse
 import os
 import sys
+from itertools import combinations
 
 import yaml
 
@@ -95,21 +97,44 @@ def report(name, team, rows):
         print(f"  {m['nombre']:<14}{', '.join(weak)}")
 
 
+def rank_trios(members, pool, mtypes):
+    """Ordena todas las combinaciones de 3: menos rivales sin respuesta SE y menos rivales que amenazan a los tres."""
+    rows = analyze(members, pool, mtypes)
+    n = len(rows)
+    results = []
+    for trio in combinations(members, 3):
+        names = [m['nombre'] for m in trio]
+        nobody_se = sum(all(r['golpea'][nm] < 2 for nm in names) for r in rows)
+        all_threat = sum(all(r['amenaza'][nm] for nm in names) for r in rows)
+        results.append((nobody_se + 2 * all_threat, nobody_se, all_threat, names))
+    print(f'\n=== Ranking de tríos ({n} sets rivales; puntaje = sin SE + 2 x amenazan a los tres, menor es mejor) ===\n')
+    print(f'{"#":>3}  {"Trío":<36}{"Sin SE":>8}{"Amenazan 3":>12}{"Puntaje":>9}')
+    for i, (score, nse, at, names) in enumerate(sorted(results), 1):
+        print(f'{i:>3}  {" / ".join(names):<36}{nse:>8}{at:>12}{score:>9}')
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--equipo', help='nombre de un equipo de equipo.yaml (por defecto todos)')
+    parser.add_argument('--trios', action='store_true', help='ordena todas las combinaciones de 3 de `pokemon`')
     parser.add_argument('--sets', default='Set 7')
     args = parser.parse_args()
 
     with open(YAML_PATH, encoding='utf-8') as f:
-        teams = yaml.safe_load(f)['equipos']
+        cfg = yaml.safe_load(f)
+    mtypes, stypes = move_type_map(), species_types()
+    members = {name: resolve_member({'nombre': name, **data}, mtypes, stypes)
+               for name, data in cfg['pokemon'].items()}
+    pool = load_pool(sets=tuple(s.strip() for s in args.sets.split(',')))
+
+    if args.trios:
+        rank_trios(list(members.values()), pool, mtypes)
+        return
+    teams = cfg['equipos']
     if args.equipo:
         teams = {args.equipo: teams[args.equipo]}
-
-    mtypes, stypes = move_type_map(), species_types()
-    pool = load_pool(sets=tuple(s.strip() for s in args.sets.split(',')))
-    for name, members in teams.items():
-        team = [resolve_member(m, mtypes, stypes) for m in members]
+    for name, names in teams.items():
+        team = [members[nm] for nm in names]
         report(name, team, analyze(team, pool, mtypes))
 
 

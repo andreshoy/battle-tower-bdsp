@@ -4,7 +4,6 @@ Se ejecuta siempre desde la raíz del repo (las rutas `data/...` son relativas a
 """
 import pandas as pd
 
-TRAINERS_PATH = 'data/battle_tower_trainers.parquet'
 FINAL_PATH = 'data/final_battle_tower_data.parquet'
 
 # Bulbapedia colorea cada movimiento según su tipo; el scraper guardó ese color.
@@ -143,24 +142,19 @@ def species_types():
 
 
 def load_pool(sets=('Set 7',), palmer_sets=('Set 7',)):
-    """Pool rival para Single de Clase Normal.
+    """Pool rival para Single de Clase Normal, tomado de `final_battle_tower_data.parquet` (mismos datos de la app).
 
-    Usa el roster completo de `battle_tower_trainers.parquet` (no la división Single/Double del merge) para
-    los Sets indicados, más los equipos de Palmer de Clase Normal indicados (`Team` 'Set 3' / 'Set 7').
-    Cada fila es un set concreto de Pokémon (especie + objeto + movimientos + stats a nivel 50).
+    Incluye los Pokémon `battle_mode == 'Single'` de los Sets indicados, más los equipos de Palmer de Clase Normal
+    indicados (`Team` 'Set 3' / 'Set 7'). Cada fila es un set concreto (especie + objeto + movimientos + stats nv. 50).
     """
-    trainers = pd.read_parquet(TRAINERS_PATH)
-    pool = trainers[trainers['Set'].isin(sets)].copy()
-
     final = pd.read_parquet(FINAL_PATH)
-    palmer = final[(final['Set'] == 'Boss') & (final['trainer_name'] == 'Palmer') &
-                   (final['battle_mode'] == 'Single') & (final['Team'].isin(palmer_sets))].copy()
+    single = final[final['battle_mode'] == 'Single']
+    pool = single[single['Set'].isin(sets)].copy()
+    palmer = single[(single['Set'] == 'Boss') & (single['trainer_name'] == 'Palmer') &
+                    (single['Team'].isin(palmer_sets))].copy()
     palmer['trainer_class'] = 'Tower Tycoon'
-    pool = pd.concat([pool, palmer[trainers.columns]], ignore_index=True)
-
-    types = species_types()
-    pool['type1'] = pool['pokemon_name'].map(lambda n: types.get(n, ('Unknown', None))[0])
-    pool['type2'] = pool['pokemon_name'].map(lambda n: types.get(n, ('Unknown', None))[1])
+    pool = pd.concat([pool, palmer], ignore_index=True)
+    pool['type2'] = pool['type2'].where(pool['type2'].apply(lambda t: isinstance(t, str)), None)
     return pool
 
 

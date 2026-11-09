@@ -3,77 +3,77 @@
 > Generado por `estrategia/analisis/amenazas.py` con los Sets: **Set 7** + Palmer.  
 > Supuesto: a partir de la batalla 50 de la Clase Normal los rivales salen del Set más alto (Set 7). Confírmalo en el juego comparando a tus rivales con la app.
 
-- Sets de Pokémon en el pool: **695**
+- Sets de Pokémon en el pool: **312**
 - Entrenadores distintos: **71**
-- Especies distintas: **102**
+- Especies distintas: **86**
 
 ## Especies más frecuentes
 
 | Pokémon | Tipo | Sets | % pool | Objetos | Movimientos frecuentes | Vel. |
 |---|---|---|---|---|---|---|
-| Blissey | Normal | 13 | 1.9% | Leftovers (13) | Ice Beam, Thunderbolt, Flamethrower, Soft-Boiled | 103–103 |
-| Dragonite | Dragon/Flying | 13 | 1.9% | Wide Lens (13) | Outrage, Aqua Tail, Iron Tail, Stone Edge | 128–128 |
-| Marowak | Ground | 13 | 1.9% | Thick Club (13) | Earthquake, Double-Edge, Aerial Ace, Brick Break | 102–102 |
-| Charizard | Fire/Flying | 12 | 1.7% | Scope Lens (12) | Flare Blitz, Aerial Ace, Crunch, Dragon Claw | 148–148 |
-| Espeon | Psychic | 12 | 1.7% | Focus Sash (12) | Light Screen, Psychic, Shadow Ball, Dazzling Gleam | 173–173 |
-| Garchomp | Dragon/Ground | 12 | 1.7% | Persim Berry (12) | Outrage, Swords Dance, Stone Edge, Earthquake | 169–169 |
-| Glaceon | Ice | 12 | 1.7% | Leftovers (12) | Mirror Coat, Tail Whip, Sand Attack, Last Resort | 91–91 |
-| Gyarados | Water/Flying | 12 | 1.7% | Lum Berry (12) | Dragon Dance, Waterfall, Earthquake, Ice Fang | 129–129 |
-| Hippowdon | Ground | 12 | 1.7% | Passho Berry (10), Leftovers (2) | Yawn, Ice Fang, Stealth Rock, Roar, Earthquake | 64–67 |
-| Jolteon | Electric | 12 | 1.7% | Magnet (12) | Thunderbolt, Volt Switch, Shadow Ball, Yawn | 200–200 |
-| Lucario | Fighting/Steel | 12 | 1.7% | Bright Powder (12) | Dark Pulse, Dragon Pulse, Aura Sphere, Nasty Plot | 138–138 |
-| Magnezone | Electric/Steel | 12 | 1.7% | Quick Claw (12) | Thunderbolt, Flash Cannon, Tri Attack, Volt Switch | 108–108 |
-| Mamoswine | Ice/Ground | 12 | 1.7% | Icy Rock (10), Focus Sash (2) | Hail, Blizzard, Mud Shot, Ancient Power, Earthquake | 128–145 |
-| Typhlosion | Fire | 12 | 1.7% | Salac Berry (12) | Eruption, Earthquake, Endure, Reversal | 148–148 |
-| Umbreon | Dark | 12 | 1.7% | Leftovers (12) | Moonlight, Dark Pulse, Yawn, Protect | 82–82 |
-| Vaporeon | Water | 12 | 1.7% | Leftovers (12) | Scald, Ice Beam, Acid Armor, Rest | 82–82 |
-| Blaziken | Fire/Fighting | 11 | 1.6% | Life Orb (11) | Protect, Close Combat, Flare Blitz, Baton Pass | 140–140 |
-| Dugtrio | Ground | 11 | 1.6% | Bright Powder (11) | Swagger, Attract, Sand Attack, Sucker Punch | 146–146 |
-| Feraligatr | Water | 11 | 1.6% | Wise Glasses (11) | Hydro Pump, Ice Beam, Dragon Pulse, Ancient Power | 126–126 |
-| Infernape | Fire/Fighting | 11 | 1.6% | Muscle Band (11) | Flare Blitz, Thunder Punch, Close Combat, U-turn | 176–176 |
-| Meganium | Grass | 11 | 1.6% | Occa Berry (11) | Solar Beam, Sunny Day, Synthesis, Ancient Power | 128–128 |
-| Probopass | Rock/Steel | 11 | 1.6% | Rock Incense (11) | Rock Polish, Stealth Rock, Lock-On, Stone Edge | 57–57 |
-| Snorlax | Normal | 11 | 1.6% | Leftovers (11) | Body Slam, Earthquake, Curse, Yawn | 47–47 |
-| Swampert | Water/Ground | 11 | 1.6% | Lum Berry (11) | Earthquake, Waterfall, Hammer Arm, Curse | 77–77 |
-| Togekiss | Fairy/Flying | 11 | 1.6% | Wide Lens (11) | Extreme Speed, Aerial Ace, Steel Wing, Roost | 128–128 |
-| Aggron | Steel/Rock | 10 | 1.4% | Chople Berry (10) | Rock Polish, Iron Head, Earthquake, Dragon Rush | 107–107 |
-| Arcanine | Fire | 10 | 1.4% | Lum Berry (10) | Flamethrower, Dragon Pulse, Will-O-Wisp, Extreme Speed | 143–143 |
-| Blastoise | Water | 10 | 1.4% | Power Herb (10) | Skull Bash, Earthquake, Waterfall, Aqua Jet | 126–126 |
-| Crobat | Poison/Flying | 10 | 1.4% | Sharp Beak (10) | Brave Bird, Zen Headbutt, Cross Poison, U-turn | 200–200 |
-| Dusknoir | Ghost | 10 | 1.4% | Ganlon Berry (10) | Curse, Pain Split, Ice Punch, Protect | 62–62 |
-| Empoleon | Water/Steel | 10 | 1.4% | Wacan Berry (10) | Drill Peck, Brick Break, Aqua Jet, Ice Beam | 86–86 |
-| Flareon | Fire | 10 | 1.4% | Charcoal (10) | Will-O-Wisp, Flare Blitz, Iron Tail, Quick Attack | 82–82 |
-| Kingdra | Water/Dragon | 10 | 1.4% | Razor Claw (10) | Waterfall, Focus Energy, Dragon Dance, Yawn | 146–146 |
-| Lapras | Water/Ice | 10 | 1.4% | Lum Berry (10) | Dragon Dance, Body Slam, Waterfall, Ice Shard | 108–108 |
-| Leafeon | Grass | 10 | 1.4% | Leftovers (10) | Synthesis, Leaf Blade, Leech Seed, Yawn | 121–121 |
-| Magmortar | Fire | 10 | 1.4% | Sitrus Berry (10) | Overheat, Thunderbolt, Psychic, Belch | 131–131 |
-| Metagross | Steel/Psychic | 10 | 1.4% | Occa Berry (10) | Magnet Rise, Rock Polish, Zen Headbutt, Meteor Mash | 118–118 |
-| Milotic | Water | 10 | 1.4% | Salac Berry (10) | Hydro Pump, Ice Beam, Recover, Hypnosis | 146–146 |
-| Rhyperior | Ground/Rock | 10 | 1.4% | Expert Belt (10) | Rock Wrecker, Ice Beam, Thunderbolt, Flamethrower | 40–40 |
-| Salamence | Dragon/Flying | 10 | 1.4% | Cheri Berry (10) | Fly, Aerial Ace, Steel Wing, Roost | 148–148 |
+| Dragonite | Dragon/Flying | 8 | 2.6% | Wide Lens (8) | Outrage, Aqua Tail, Iron Tail, Stone Edge | 128–128 |
+| Blissey | Normal | 7 | 2.2% | Leftovers (7) | Ice Beam, Thunderbolt, Flamethrower, Soft-Boiled | 103–103 |
+| Lucario | Fighting/Steel | 7 | 2.2% | Bright Powder (7) | Dark Pulse, Dragon Pulse, Aura Sphere, Nasty Plot | 138–138 |
+| Mamoswine | Ice/Ground | 7 | 2.2% | Icy Rock (6), Focus Sash (1) | Hail, Blizzard, Mud Shot, Ancient Power, Earthquake | 128–145 |
+| Blaziken | Fire/Fighting | 6 | 1.9% | Life Orb (6) | Protect, Close Combat, Flare Blitz, Baton Pass | 140–140 |
+| Charizard | Fire/Flying | 6 | 1.9% | Scope Lens (6) | Flare Blitz, Aerial Ace, Crunch, Dragon Claw | 148–148 |
+| Flareon | Fire | 6 | 1.9% | Charcoal (6) | Will-O-Wisp, Flare Blitz, Iron Tail, Quick Attack | 82–82 |
+| Glaceon | Ice | 6 | 1.9% | Leftovers (6) | Mirror Coat, Tail Whip, Sand Attack, Last Resort | 91–91 |
+| Infernape | Fire/Fighting | 6 | 1.9% | Muscle Band (6) | Flare Blitz, Thunder Punch, Close Combat, U-turn | 176–176 |
+| Jolteon | Electric | 6 | 1.9% | Magnet (6) | Thunderbolt, Volt Switch, Shadow Ball, Yawn | 200–200 |
+| Magnezone | Electric/Steel | 6 | 1.9% | Quick Claw (6) | Thunderbolt, Flash Cannon, Tri Attack, Volt Switch | 108–108 |
+| Marowak | Ground | 6 | 1.9% | Thick Club (6) | Earthquake, Double-Edge, Aerial Ace, Brick Break | 102–102 |
+| Meganium | Grass | 6 | 1.9% | Occa Berry (6) | Solar Beam, Sunny Day, Synthesis, Ancient Power | 128–128 |
+| Snorlax | Normal | 6 | 1.9% | Leftovers (6) | Body Slam, Earthquake, Curse, Yawn | 47–47 |
+| Typhlosion | Fire | 6 | 1.9% | Salac Berry (6) | Eruption, Earthquake, Endure, Reversal | 148–148 |
+| Umbreon | Dark | 6 | 1.9% | Leftovers (6) | Moonlight, Dark Pulse, Yawn, Protect | 82–82 |
+| Vaporeon | Water | 6 | 1.9% | Leftovers (6) | Scald, Ice Beam, Acid Armor, Rest | 82–82 |
+| Dugtrio | Ground | 5 | 1.6% | Bright Powder (5) | Swagger, Attract, Sand Attack, Sucker Punch | 146–146 |
+| Empoleon | Water/Steel | 5 | 1.6% | Wacan Berry (5) | Drill Peck, Brick Break, Aqua Jet, Ice Beam | 86–86 |
+| Feraligatr | Water | 5 | 1.6% | Wise Glasses (5) | Hydro Pump, Ice Beam, Dragon Pulse, Ancient Power | 126–126 |
+| Garchomp | Dragon/Ground | 5 | 1.6% | Persim Berry (5) | Outrage, Swords Dance, Stone Edge, Earthquake | 169–169 |
+| Gyarados | Water/Flying | 5 | 1.6% | Lum Berry (5) | Dragon Dance, Waterfall, Earthquake, Ice Fang | 129–129 |
+| Hippowdon | Ground | 5 | 1.6% | Passho Berry (5) | Yawn, Stealth Rock, Roar, Ice Fang | 64–64 |
+| Porygon-Z | Normal | 5 | 1.6% | Choice Specs (5) | Tri Attack, Shadow Ball, Ice Beam, Thunderbolt | 138–138 |
+| Probopass | Rock/Steel | 5 | 1.6% | Rock Incense (5) | Rock Polish, Stealth Rock, Lock-On, Stone Edge | 57–57 |
+| Salamence | Dragon/Flying | 5 | 1.6% | Cheri Berry (5) | Fly, Aerial Ace, Steel Wing, Roost | 148–148 |
+| Swampert | Water/Ground | 5 | 1.6% | Lum Berry (5) | Earthquake, Waterfall, Hammer Arm, Curse | 77–77 |
+| Tangrowth | Grass | 5 | 1.6% | Big Root (5) | Leech Seed, Double Team, Stun Spore, Giga Drain | 67–67 |
+| Togekiss | Fairy/Flying | 5 | 1.6% | Wide Lens (5) | Extreme Speed, Aerial Ace, Steel Wing, Roost | 128–128 |
+| Tyranitar | Rock/Dark | 5 | 1.6% | Expert Belt (5) | Dark Pulse, Ice Beam, Flamethrower, Ancient Power | 109–109 |
+| Aggron | Steel/Rock | 4 | 1.3% | Chople Berry (4) | Rock Polish, Iron Head, Earthquake, Dragon Rush | 107–107 |
+| Arcanine | Fire | 4 | 1.3% | Lum Berry (4) | Flamethrower, Dragon Pulse, Will-O-Wisp, Extreme Speed | 143–143 |
+| Blastoise | Water | 4 | 1.3% | Power Herb (4) | Skull Bash, Earthquake, Waterfall, Aqua Jet | 126–126 |
+| Crobat | Poison/Flying | 4 | 1.3% | Sharp Beak (4) | Brave Bird, Zen Headbutt, Cross Poison, U-turn | 200–200 |
+| Dusknoir | Ghost | 4 | 1.3% | Ganlon Berry (4) | Curse, Pain Split, Ice Punch, Protect | 62–62 |
+| Espeon | Psychic | 4 | 1.3% | Focus Sash (4) | Light Screen, Psychic, Shadow Ball, Dazzling Gleam | 173–173 |
+| Flygon | Ground/Dragon | 4 | 1.3% | Soft Sand (4) | Earthquake, Dragon Claw, Stone Edge, Dragon Dance | 148–148 |
+| Gallade | Psychic/Fighting | 4 | 1.3% | King's Rock (4) | Psycho Cut, Poison Jab, Thunder Wave, Confuse Ray | 138–138 |
+| Gengar | Ghost/Poison | 4 | 1.3% | Focus Sash (4) | Shadow Ball, Psychic, Energy Ball, Focus Blast | 171–171 |
+| Kingdra | Water/Dragon | 4 | 1.3% | Razor Claw (4) | Waterfall, Focus Energy, Dragon Dance, Yawn | 146–146 |
 
 ## Tipos de los rivales (defensivo)
 
 | Tipo | Sets que lo tienen | % |
 |---|---|---|
-| Water | 126 | 18.1% |
-| Ground | 124 | 17.8% |
-| Flying | 86 | 12.4% |
-| Steel | 83 | 11.9% |
-| Fire | 82 | 11.8% |
-| Grass | 70 | 10.1% |
-| Rock | 57 | 8.2% |
-| Psychic | 56 | 8.1% |
-| Dragon | 55 | 7.9% |
-| Normal | 54 | 7.8% |
-| Ice | 51 | 7.3% |
-| Fighting | 51 | 7.3% |
-| Poison | 43 | 6.2% |
-| Electric | 41 | 5.9% |
-| Dark | 31 | 4.5% |
-| Fairy | 20 | 2.9% |
-| Ghost | 18 | 2.6% |
-| Bug | 17 | 2.4% |
+| Water | 55 | 17.6% |
+| Ground | 53 | 17.0% |
+| Flying | 41 | 13.1% |
+| Fire | 39 | 12.5% |
+| Steel | 36 | 11.5% |
+| Grass | 31 | 9.9% |
+| Fighting | 28 | 9.0% |
+| Dragon | 26 | 8.3% |
+| Normal | 25 | 8.0% |
+| Psychic | 24 | 7.7% |
+| Rock | 23 | 7.4% |
+| Ice | 23 | 7.4% |
+| Electric | 20 | 6.4% |
+| Poison | 20 | 6.4% |
+| Dark | 15 | 4.8% |
+| Ghost | 10 | 3.2% |
+| Fairy | 7 | 2.2% |
+| Bug | 5 | 1.6% |
 
 ## Presión ofensiva por tipo de ataque
 
@@ -81,118 +81,113 @@ Porcentaje de sets rivales que llevan al menos un ataque de ese tipo. Tu equipo 
 
 | Tipo de ataque | Sets | % |
 |---|---|---|
-| Ice | 194 | 27.9% |
-| Ground | 167 | 24.0% |
-| Normal | 150 | 21.6% |
-| Fire | 136 | 19.6% |
-| Fighting | 134 | 19.3% |
-| Water | 129 | 18.6% |
-| Rock | 128 | 18.4% |
-| Electric | 112 | 16.1% |
-| Dragon | 99 | 14.2% |
-| Steel | 96 | 13.8% |
-| Dark | 93 | 13.4% |
-| Grass | 84 | 12.1% |
-| Psychic | 83 | 11.9% |
-| Flying | 78 | 11.2% |
-| Ghost | 48 | 6.9% |
-| Poison | 39 | 5.6% |
-| Bug | 34 | 4.9% |
-| Fairy | 16 | 2.3% |
+| Ice | 86 | 27.6% |
+| Ground | 70 | 22.4% |
+| Normal | 66 | 21.2% |
+| Rock | 62 | 19.9% |
+| Fighting | 61 | 19.6% |
+| Fire | 60 | 19.2% |
+| Water | 59 | 18.9% |
+| Electric | 51 | 16.3% |
+| Dragon | 47 | 15.1% |
+| Steel | 45 | 14.4% |
+| Dark | 42 | 13.5% |
+| Grass | 37 | 11.9% |
+| Psychic | 37 | 11.9% |
+| Flying | 35 | 11.2% |
+| Ghost | 22 | 7.1% |
+| Poison | 17 | 5.4% |
+| Bug | 15 | 4.8% |
+| Fairy | 5 | 1.6% |
 
 ## Objetos
 
 | Objeto | Sets | Por qué importa |
 |---|---|---|
-| Leftovers | 77 |  |
-| Lum Berry | 54 |  |
-| Bright Powder | 35 | baja tu precisión |
-| Life Orb | 32 | más daño |
-| Occa Berry | 28 |  |
-| Quick Claw | 27 | 20% de moverse primero |
-| Focus Sash | 27 | aguanta un golpe con 1 PS si está a vida completa |
-| Wide Lens | 27 |  |
-| Sitrus Berry | 25 |  |
-| Big Root | 23 |  |
-| Salac Berry | 22 | sube velocidad con poca vida |
-| Expert Belt | 20 |  |
-| Cheri Berry | 19 |  |
-| Persim Berry | 15 |  |
-| Muscle Band | 15 |  |
-| Power Herb | 14 |  |
-| Thick Club | 13 |  |
-| Wise Glasses | 12 |  |
-| Magnet | 12 |  |
-| Scope Lens | 12 | más golpes críticos |
-| Wacan Berry | 12 |  |
-| Chople Berry | 12 |  |
-| Razor Claw | 12 | más golpes críticos |
-| Rock Incense | 11 |  |
-| Icy Rock | 11 |  |
+| Leftovers | 38 |  |
+| Lum Berry | 23 |  |
+| Bright Powder | 17 | baja tu precisión |
+| Wide Lens | 15 |  |
+| Quick Claw | 12 | 20% de moverse primero |
+| Big Root | 12 |  |
+| Focus Sash | 12 | aguanta un golpe con 1 PS si está a vida completa |
+| Life Orb | 12 | más daño |
+| Occa Berry | 11 |  |
+| Salac Berry | 10 | sube velocidad con poca vida |
+| Expert Belt | 9 |  |
+| Sitrus Berry | 9 |  |
+| Cheri Berry | 8 |  |
+| Muscle Band | 8 |  |
+| Wise Glasses | 6 |  |
+| Magnet | 6 |  |
+| Persim Berry | 6 |  |
+| Icy Rock | 6 |  |
+| Thick Club | 6 |  |
+| Charcoal | 6 |  |
+| Wacan Berry | 6 |  |
+| Scope Lens | 6 | más golpes críticos |
+| Power Herb | 6 |  |
+| Rock Incense | 5 |  |
+| Choice Specs | 5 | más ataque especial |
 
 ## Movimientos peligrosos para la racha
 
-### OHKO (fulminan de un golpe): 18 sets (2.6%)
+### OHKO (fulminan de un golpe): 6 sets (1.9%)
 
-Walrein – Sheer Cold (10), Walrein – Fissure (10), Gliscor – Guillotine (6), Pinsir – Guillotine (2)
+Walrein – Sheer Cold (4), Walrein – Fissure (4), Gliscor – Guillotine (2)
 
-### Sueño: 100 sets (14.4%)
+### Sueño: 45 sets (14.4%)
 
-Jolteon – Yawn (12), Umbreon – Yawn (12), Hippowdon – Yawn (12), Snorlax – Yawn (11), Leafeon – Yawn (10), Milotic – Hypnosis (10), Venusaur – Sleep Powder (10), Kingdra – Yawn (10), Bronzong – Hypnosis (6), Politoed – Hypnosis (4), Drifblim – Hypnosis (2), Gastrodon – Yawn (1)
+Jolteon – Yawn (6), Snorlax – Yawn (6), Umbreon – Yawn (6), Hippowdon – Yawn (5), Venusaur – Sleep Powder (4), Milotic – Hypnosis (4), Leafeon – Yawn (4), Kingdra – Yawn (4), Drifblim – Hypnosis (2), Politoed – Hypnosis (2), Bronzong – Hypnosis (2)
 
-### Confusión / Atracción: 34 sets (4.9%)
+### Confusión / Atracción: 15 sets (4.8%)
 
-Dugtrio – Swagger (11), Dugtrio – Attract (11), Gardevoir – Confuse Ray (7), Gallade – Confuse Ray (6), Machamp – Dynamic Punch (4), Aerodactyl – Swagger (3), Aerodactyl – Attract (3), Cradily – Swagger (2), Toxicroak – Flatter (1)
+Dugtrio – Swagger (5), Dugtrio – Attract (5), Gallade – Confuse Ray (4), Aerodactyl – Swagger (2), Aerodactyl – Attract (2), Gardevoir – Confuse Ray (2), Toxicroak – Flatter (1), Machamp – Dynamic Punch (1)
 
-### Evasión / Precisión: 39 sets (5.6%)
+### Evasión / Precisión: 19 sets (6.1%)
 
-Glaceon – Sand Attack (12), Dugtrio – Sand Attack (11), Tangrowth – Double Team (9), Luxray – Flash (6), Muk – Minimize (1)
+Glaceon – Sand Attack (6), Tangrowth – Double Team (5), Dugtrio – Sand Attack (5), Luxray – Flash (3)
 
-### Parálisis / Quemadura / Tóxico: 101 sets (14.5%)
+### Parálisis / Quemadura / Tóxico: 46 sets (14.7%)
 
-Vaporeon – Scald (12), Snorlax – Body Slam (11), Flareon – Will-O-Wisp (10), Lapras – Body Slam (10), Arcanine – Will-O-Wisp (10), Tangrowth – Stun Spore (9), Electivire – Thunder Wave (9), Slaking – Body Slam (9), Gardevoir – Thunder Wave (7), Gallade – Thunder Wave (6), Ampharos – Thunder Wave (2), Shuckle – Toxic (2), Ninetales – Will-O-Wisp (2), Slowking – Scald (1), Gastrodon – Scald (1)
+Vaporeon – Scald (6), Snorlax – Body Slam (6), Flareon – Will-O-Wisp (6), Tangrowth – Stun Spore (5), Gallade – Thunder Wave (4), Arcanine – Will-O-Wisp (4), Lapras – Body Slam (4), Electivire – Thunder Wave (3), Slaking – Body Slam (3), Gardevoir – Thunder Wave (2), Ampharos – Thunder Wave (2), Slowking – Scald (1)
 
-### Mejora (setup): 142 sets (20.4%)
+### Mejora (setup): 62 sets (19.9%)
 
-Gyarados – Dragon Dance (12), Garchomp – Swords Dance (12), Lucario – Nasty Plot (12), Probopass – Rock Polish (11), Swampert – Curse (11), Snorlax – Curse (11), Metagross – Rock Polish (10), Aggron – Rock Polish (10), Dusknoir – Curse (10), Lapras – Dragon Dance (10), Kingdra – Dragon Dance (10), Flygon – Dragon Dance (9), Lickilicky – Belly Drum (3), Claydol – Rock Polish (3), Drapion – Acupressure (2), Pinsir – Swords Dance (2), Cradily – Stockpile (2), Ninetales – Nasty Plot (1), Cresselia – Calm Mind (1)
+Lucario – Nasty Plot (7), Snorlax – Curse (6), Gyarados – Dragon Dance (5), Garchomp – Swords Dance (5), Probopass – Rock Polish (5), Swampert – Curse (5), Aggron – Rock Polish (4), Dusknoir – Curse (4), Lapras – Dragon Dance (4), Metagross – Rock Polish (4), Kingdra – Dragon Dance (4), Flygon – Dragon Dance (4), Claydol – Rock Polish (2), Lickilicky – Belly Drum (1), Drapion – Acupressure (1), Cresselia – Calm Mind (1)
 
-### Prioridad: 91 sets (13.1%)
+### Prioridad: 40 sets (12.8%)
 
-Dugtrio – Sucker Punch (11), Togekiss – Extreme Speed (11), Empoleon – Aqua Jet (10), Flareon – Quick Attack (10), Lapras – Ice Shard (10), Arcanine – Extreme Speed (10), Blastoise – Aqua Jet (10), Scizor – Bullet Punch (6), Scizor – Quick Attack (6), Floatzel – Aqua Jet (5), Weavile – Ice Shard (2), Mamoswine – Ice Shard (2), Donphan – Ice Shard (2), Abomasnow – Ice Shard (1), Toxicroak – Sucker Punch (1)
+Flareon – Quick Attack (6), Dugtrio – Sucker Punch (5), Empoleon – Aqua Jet (5), Togekiss – Extreme Speed (5), Arcanine – Extreme Speed (4), Lapras – Ice Shard (4), Blastoise – Aqua Jet (4), Scizor – Bullet Punch (2), Scizor – Quick Attack (2), Mamoswine – Ice Shard (1), Donphan – Ice Shard (1), Toxicroak – Sucker Punch (1), Floatzel – Aqua Jet (1), Weavile – Ice Shard (1)
 
-### Devolver daño / kamikaze: 35 sets (5.0%)
+### Devolver daño / kamikaze: 13 sets (4.2%)
 
-Glaceon – Mirror Coat (12), Slaking – Counter (9), Machamp – Counter (4), Politoed – Perish Song (4), Lickilicky – Explosion (3), Houndoom – Counter (1), Bastiodon – Metal Burst (1), Altaria – Perish Song (1)
+Glaceon – Mirror Coat (6), Slaking – Counter (3), Politoed – Perish Song (2), Lickilicky – Explosion (1), Machamp – Counter (1)
 
-### Trampa / cambio: 29 sets (4.2%)
+### Trampa / cambio: 11 sets (3.5%)
 
-Hippowdon – Roar (10), Slaking – Encore (9), Politoed – Perish Song (4), Shuckle – Wrap (2), Heatran – Magma Storm (2), Bastiodon – Taunt (1), Altaria – Perish Song (1)
+Hippowdon – Roar (5), Slaking – Encore (3), Politoed – Perish Song (2), Heatran – Magma Storm (1)
 
 ## Habilidades a tener en cuenta
 
 | Habilidad | Sets |
 |---|---|
-| Sturdy | 41 |
-| Intimidate | 39 |
-| Sand Stream | 22 |
-| Levitate | 19 |
-| Water Absorb | 16 |
-| Flash Fire | 13 |
-| Multiscale | 13 |
-| Volt Absorb | 12 |
-| Rough Skin | 12 |
-| Flame Body | 10 |
-| Snow Cloak | 10 |
-| Motor Drive | 9 |
-| Snow Warning | 5 |
-| Drizzle | 4 |
-| Poison Point | 4 |
-| Storm Drain | 4 |
-| Guts | 3 |
-| Drought | 3 |
+| Intimidate | 17 |
+| Sturdy | 16 |
+| Sand Stream | 10 |
+| Levitate | 9 |
+| Water Absorb | 8 |
+| Multiscale | 8 |
+| Flash Fire | 7 |
+| Volt Absorb | 6 |
+| Snow Cloak | 6 |
+| Rough Skin | 5 |
+| Flame Body | 4 |
+| Motor Drive | 3 |
+| Poison Point | 3 |
 | Static | 2 |
-| Speed Boost | 2 |
-| Lightning Rod | 1 |
+| Drizzle | 2 |
+| Snow Warning | 1 |
 
 ## Palmer (Magnate de la Torre)
 

@@ -24,10 +24,6 @@ Todos los scripts se ejecutan desde la raíz del repo.
 4. `python utils/merge_pokemon_data.py` → `data/final_battle_tower_data.parquet`
 5. `python utils/generate_static_html.py` → `index.html`
 
-> **Nota pendiente de verificar:** `merge_pokemon_data.py` marca como `Single` los 3 primeros Pokémon de cada
-> equipo de entrenador normal y como `Double` el resto. Puede que no refleje cómo el juego elige los Pokémon.
-> Por eso los análisis de `estrategia/` usan el roster completo de `battle_tower_trainers.parquet`.
-
 ## Instalación y uso
 
 ```bash

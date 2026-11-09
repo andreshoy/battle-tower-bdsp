@@ -5,13 +5,13 @@ Las estrellas se pueden conseguir en cualquier orden.
 
 | # | Requisito | Estado |
 |---|---|---|
-| 1 | Derrotar al Alto Mando y a la Campeona | [ ] confirmar |
-| 2 | Conseguir **100 estatuas distintas** en el Gran Subsuelo | [ ] |
-| 3 | Ganar un **Concurso** en **rango Maestro** (cualquier categoría) | [ ] |
+| 1 | Derrotar al Alto Mando y a la Campeona | ✅ (Hall of Fame 16/10/2022) |
+| 2 | Conseguir **100 estatuas distintas** en el Gran Subsuelo | ✅ (113 variantes) |
+| 3 | Ganar un **Concurso** en **rango Maestro** (cualquier categoría) | ✅ (Maestro en Belleza, Ternura e Ingenio) |
 | 4 | Racha de **100 victorias** en la Torre Batalla | [ ] (mejor racha: 89) |
-| 5 | Completar la **Pokédex Nacional** | [ ] |
+| 5 | Completar la **Pokédex Nacional** | [ ] (389 atrapados; meta: 484 = 493 − 9 singulares) |
 
-Para revisar cuáles tienes: abre la tarjeta de entrenador y mira el color y las estrellas del reverso.
+**Estado al 2026-11-08: 3 estrellas (tarjeta plateada).** Faltan la racha de 100 y la Pokédex Nacional.
 
 ---
 
