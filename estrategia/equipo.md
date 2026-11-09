@@ -57,6 +57,10 @@ Cómo enfrentarlos con el equipo actual:
 
 La guía completa, rival por rival, está en [matchups.md](matchups.md).
 
+## Orden en cada serie
+**Gastrodon → Gyarados → Roserade.** Gastrodon tiene enfrentamiento favorable contra el 55% de los primeros Pokémon
+rivales posibles (Gyarados 29%, Roserade 20%). Las reglas de cambio están en [protocolo_racha.md](protocolo_racha.md).
+
 ## Garchomp: ¿vale la pena criarlo?
 **Es opcional; la mejora es marginal.**
 - En lugar de Gyarados (Gastrodon / Roserade / Garchomp), los huecos bajan de 38 a 27, pero aparece un rival que amenaza a los tres (Abomasnow).

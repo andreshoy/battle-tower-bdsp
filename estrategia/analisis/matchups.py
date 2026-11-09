@@ -83,24 +83,6 @@ def main():
     lines.append(f'\n## Rivales difíciles (ningún miembro tiene un enfrentamiento claro)\n')
     lines.append(', '.join(dict.fromkeys(hard)) or '—')
 
-    # El rival saca primero a uno de sus Pokémon al azar: el líder se elige por el promedio contra todo su roster.
-    lines.append('\n## Líder recomendado por entrenador\n')
-    lines.append('El primer Pokémon del rival es aleatorio, así que el líder se elige por su promedio contra **todos** los '
-                 'Pokémon posibles del entrenador (todos sus equipos). *Cuidado* = rivales que le pegan súper eficaz '
-                 'al líder y además son más rápidos que él: si sale uno de esos, considera cambiar.\n')
-    lines.append('| Clase | Entrenador | Pokémon posibles | Líder | Cuidado |')
-    lines.append('|---|---|---|---|---|')
-    roster = pool.drop_duplicates(subset=['trainer_name', 'pokemon_name', 'item'])
-    for (cls, name), g in sorted(roster.groupby(['trainer_class', 'trainer_name']), key=lambda kv: kv[0]):
-        best = None
-        for m in team:
-            res = [(evaluate(m, r, mtypes), r['pokemon_name']) for _, r in g.iterrows()]
-            avg = sum(e[0] for e, _ in res) / len(res)
-            danger = [p for e, p in res if e[3] and not e[4]]
-            if best is None or (avg, -len(danger)) > (best[0], -len(best[2])):
-                best = (avg, m['nombre'], danger)
-        lines.append(f"| {cls} | {name} | {', '.join(sorted(set(g['pokemon_name'])))} | **{best[1]}** | "
-                     f"{', '.join(best[2]) or '—'} |")
     with open(OUTPUT, 'w', encoding='utf-8') as f:
         f.write('\n'.join(lines) + '\n')
     print(f'✓ {OUTPUT} generado ({len(sets)} sets rivales distintos); difíciles: {", ".join(dict.fromkeys(hard))}')

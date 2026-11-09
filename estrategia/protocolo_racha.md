@@ -9,16 +9,40 @@ Llegaste a 89: el equipo funciona. Las rachas largas casi siempre se pierden por
   juegan con el mismo equipo.
 - Ten abierta la app (`ui/app.py` o `index.html`) en el celular.
 
+## Orden para cada serie de 7: **Gastrodon primero**
+El orden solo se elige al empezar cada serie, y el rival saca primero a uno de sus 3 Pokémon al azar.
+Ponderando como el juego (entrenador al azar → equipo al azar → primer Pokémon al azar) sobre el Set 7:
+
+| Líder | Enfrentamiento favorable | Amenazado y más lento que el rival |
+|---|---|---|
+| **Gastrodon** | **55%** | 10% |
+| Gyarados | 29% | 10% |
+| Roserade | 20% | 9% |
+
+**Orden recomendado: Gastrodon → Gyarados → Roserade**, en todas las series. Por qué funciona:
+- Gastrodon es inmune a Agua y a Eléctrico y aguanta mucho, así que casi siempre puede quedarse o cambiar sin
+  perder mucha vida.
+- Roserade guarda su Banda Focus intacta para cuando entre.
+- Gyarados conserva Intimidación para usarla al entrar a mitad del combate.
+
+**Única debilidad de Gastrodon: Planta, que le pega x4.** Qué hacer si el rival sale con uno de estos:
+
+| Rival | Ataque Planta | Qué hacer |
+|---|---|---|
+| Torterra (Vel 54) | Lluevehojas | **Quédate**: eres más rápido y Rayo Hielo le pega x4 |
+| Tangrowth (67), Venusaur (97), Leafeon (121), Meganium (128), Roserade rival (105), Sceptile (184) | Gigadrenado, Hoja Aguda, Rayo Solar, Energibola | **Cambia a Roserade**: recibe Planta x0.25 y les pega con Bomba Lodo |
+| Abomasnow | Gigadrenado | **Cambia a Gyarados**: recibe neutral, y sus ataques Hielo le pegan x2 a Roserade |
+| Gengar (171, Banda Focus) | Energibola | **Cambia a Gyarados** → Terremoto x2. Recuerda que la Banda Focus le permite aguantar un golpe |
+| Alakazam (166) | Energibola | **Cambia a Gyarados** → Triturar x2 |
+
 ## Cada batalla
 1. **Identifica al rival** por su clase y su nombre. En la app: Single → Set 7 → clase → nombre. Ahí ves **todos los
    Pokémon posibles** de ese entrenador, con objeto, movimientos y stats. Cada entrenador tiene un roster fijo, así
    que es casi como ver su equipo antes de empezar.
-2. **Elige quién sale primero** con la tabla *Líder recomendado por entrenador* de [matchups.md](matchups.md).
-   El rival saca primero a **uno de sus 3 Pokémon al azar**, así que el líder recomendado es el que mejor le va en
-   promedio contra todos los posibles. Si el entrenador no está en la tabla, sal con **Gastrodon**: es el mejor
-   líder general (enfrentamiento favorable contra el 53% de los Pokémon del Set 7).
-3. **Cuando veas qué sacó el rival,** busca ese Pokémon en la tabla principal de [matchups.md](matchups.md). Si tu líder
+2. **Cuando veas qué sacó el rival,** búscalo en la tabla de [matchups.md](matchups.md). Si tu Pokémon en campo
    aparece con ⚠ (recibe súper eficaz) y el rival es más rápido, cambia al Pokémon de la columna *Respuesta*.
+3. **Cuando uno de tus Pokémon caiga,** elige el reemplazo con la misma tabla. El 2.º y el 3.º los eliges tú en ese
+   momento, así que su orden en el equipo no importa.
 4. Antes de atacar, revisa en la app el **objeto** y la **habilidad** del rival:
    - **Banda Focus** o **Robustez** (Sturdy, muy común en el Set 7): no lo dejarás KO de un golpe. Usa primero un
      ataque débil o de prioridad, o ten listo el segundo golpe.
