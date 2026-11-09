@@ -5,33 +5,57 @@ Llegaste a 89: el equipo funciona. Las rachas largas casi siempre se pierden por
 
 ## Antes de entrar
 - **Guarda** antes de cada sesión. Apagar la consola a mitad de un combate o de una serie sin guardar **cuenta como derrota**.
-- Puedes descansar y cambiar el equipo y el orden **antes de la batalla 1 y hasta antes de la batalla 5** de cada
-  serie. Las batallas 5, 6 y 7 se juegan con el mismo equipo y orden (fuente: altissimo1).
+- El equipo y el orden se eligen **al empezar cada serie de 7** (batallas 1, 8, 15, 22, 29, 36, 43, 50…) y quedan
+  fijos durante las 7 batallas. Ejemplo: el equipo que elijas en la 43 es el mismo contra Palmer en la 49, y no se
+  puede cambiar hasta la 50.
 - Ten abierta la app (`ui/app.py` o `index.html`) en el celular.
 
 ## Orden para cada set
 Cada set de la página es una serie de 7 batallas: Set 1 = batallas 1-7, Set 2 = 8-14, …, Set 7 = 43-49.
 Desde la 50 los rivales siguen saliendo del **Set 7** (supuesto; ver [amenazas.md](amenazas.md)).
 El rival saca primero a uno de sus 3 Pokémon al azar. Por eso el líder se eligió ponderando como el juego
-(entrenador al azar → equipo al azar → primer Pokémon al azar) contra los rivales Single de cada set.
+(entrenador al azar → equipo al azar → primer Pokémon al azar) contra los rivales Single de cada set,
+contando **solo los equipos B, C, D y E** de cada entrenador (los Team A no cuentan, ni los entrenadores que solo
+tienen Team A). Del Set 2 en adelante casi ningún entrenador tiene C, D o E, así que en la práctica es el Team B.
+Se elige el líder con mayor diferencia entre *favorable* y *amenazado y más lento*.
 
 | Set | Batallas | Orden | Líder: favorable / amenazado y más lento | Motivo |
 |---|---|---|---|---|
-| 1 | 1-7 | **Roserade** → Gastrodon → Gyarados | 39% / 0% (Gastrodon 42% / 7%) | Casi igual que Gastrodon, pero sin riesgo |
-| 2 | 8-14 | **Gastrodon** → Roserade → Gyarados | 47% / 5% (Roserade 32% / 0%) | Gastrodon claramente mejor |
-| 3 | 15-21 | **Gastrodon** → Roserade → Gyarados | 44% / 12% (Roserade 35% / 2%) | **Palmer (batalla 21)**: Gastrodon no tiene debilidades contra su equipo |
-| 4 | 22-28 | **Roserade** → Gastrodon → Gyarados | 35% / 0% (Gastrodon 41% / 13%) | Gastrodon corre más riesgo en este set (muchos Planta) |
-| 5 | 29-35 | **Roserade** → Gastrodon → Gyarados | 28% / 4% (Gastrodon 36% / 16%) | Igual que el Set 4 |
-| 6 | 36-42 | **Gastrodon** → Gyarados → Roserade | 46% / 13% (Roserade 13% / 13%) | Roserade sufre mucho en este set |
-| 7 | 43-46 | **Gastrodon** → Gyarados → Roserade | 55% / 10% (Gyarados 29% / 10%) | El mejor líder contra el Set 7 |
-| 7 | **47-49** | **Gyarados** → Gastrodon → Roserade | — | **Palmer (batalla 49)**: Gyarados le gana a sus 3 Pokémon (ver abajo) |
-| 50+ | 50-100 | **Gastrodon** → Gyarados → Roserade | 55% / 10% | Rivales del Set 7 |
+| 1 | 1-7 | **Roserade** → Gastrodon → Gyarados | 39% / 0% (Gastrodon 41% / 8%) | Casi igual que Gastrodon, pero sin riesgo |
+| 2 | 8-14 | **Gastrodon** → Roserade → Gyarados | 43% / 8% (Roserade 28% / 0%) | Gastrodon claramente mejor |
+| 3 | 15-21 | **Gastrodon** → Roserade → Gyarados | 43% / 10% (Roserade 34% / 2%) | **Palmer (batalla 21)**: Gastrodon no tiene debilidades contra su equipo |
+| 4 | 22-28 | **Roserade** → Gastrodon → Gyarados | 36% / 0% (Gastrodon 43% / 10%) | Gastrodon corre más riesgo en este set (muchos Planta) |
+| 5 | 29-35 | **Roserade** → Gastrodon → Gyarados | 32% / 4% (Gastrodon 36% / 10%) | Igual que el Set 4 |
+| 6 | 36-42 | **Gastrodon** → Gyarados → Roserade | 43% / 13% (Gyarados 30% / 1%) | Gyarados queda muy cerca; Roserade sufre mucho en este set (15% / 8%) |
+| 7 | 43-49 | **Gastrodon** → Gyarados → Roserade | 51% / 14% (Gyarados 28% / 3%) | El mejor líder contra el Set 7. **Palmer (batalla 49)**: ninguno de sus 3 le pega súper eficaz a Gastrodon; cambia a Gyarados si saca a Cresselia o Regigigas (ver abajo) |
+| 50+ | 50-100 | **Gastrodon** → Gyarados → Roserade | 51% / 14% | Rivales del Set 7 |
 
-- **Cambio a mitad del Set 7:** se puede descansar y cambiar el equipo hasta antes de la batalla 5 de cada serie
-  (fuente: altissimo1; compruébalo en el juego). Entonces: juega las batallas 43-46 con Gastrodon primero, **descansa
-  después de la 46** y cambia a Gyarados primero para las batallas 47-49. Si el juego no te deja, usa Gastrodon
-  primero en todo el Set 7 y cambia a Gyarados en cuanto Palmer saque a Cresselia o a Regigigas.
+- Los porcentajes son contra los entrenadores normales. Contra Palmer (1 de las 7 batallas de los Sets 3 y 7) el líder
+  de la tabla tampoco recibe súper eficaz de ninguno de sus Pokémon.
 - El 2.º y el 3.º los eliges tú cuando cae uno. El orden de la tabla es solo el que conviene dejar puesto.
+
+### Tabla completa de líderes
+Los tres Pokémon como primero en cada set (Team B-E). Formato: favorable / amenazado y más lento (neto = diferencia).
+Para Palmer se compara sin él y con **50%** de peso (lo mismo que las otras 6 batallas juntas; supuesto). Con su peso
+natural (1 de 7) el resultado es el mismo que sin él.
+
+| Set | Batallas | Gastrodon | Roserade | Gyarados | Mejor primero |
+|---|---|---|---|---|---|
+| 1 | 1-7 | 41/8 (+33) | **39/0 (+39)** | 26/0 (+26) | Roserade |
+| 2 | 8-14 | **43/8 (+35)** | 28/0 (+28) | 17/0 (+17) | Gastrodon |
+| 3 sin Palmer | 15-21 | **43/10 (+33)** | 34/2 (+32) | 31/0 (+31) | Gastrodon |
+| 3 con Palmer 50% | 15-21 | **55/5 (+50)** | 51/1 (+49) | 16/0 (+16) | Gastrodon |
+| 4 | 22-28 | 43/10 (+33) | **36/0 (+36)** | 23/0 (+23) | Roserade |
+| 5 | 29-35 | 36/10 (+26) | **32/4 (+28)** | 12/8 (+4) | Roserade |
+| 6 | 36-42 | **43/13 (+30)** | 15/8 (+7) | 30/1 (+29) | Gastrodon (Gyarados casi empata) |
+| 7 sin Palmer | 43-49 | **51/14 (+37)** | 26/4 (+22) | 28/3 (+25) | Gastrodon |
+| 7 con Palmer 50% | 43-49 | 42/7 (+35) | 13/2 (+11) | **47/2 (+46)** | **Gyarados** |
+| 50+ | 50-100 | **51/14 (+37)** | 26/4 (+22) | 28/3 (+25) | Gastrodon |
+
+- Solo contra Palmer: en el Set 3, Gastrodon y Roserade 67/0, Gyarados 0/0. En el Set 7, Gyarados 67/0, Gastrodon 33/0,
+  Roserade 0/0.
+- Set 7: si Palmer pesa más de ~26% de la serie, conviene Gyarados primero; si pesa menos, Gastrodon.
+- Los netos salen de los valores sin redondear (pueden diferir en 1 punto de restar a mano).
 
 **Única debilidad de Gastrodon: Planta, que le pega x4.** Qué hacer si el rival sale con uno de estos:
 
@@ -84,12 +108,13 @@ Ninguno de los tres le pega súper eficaz a Gastrodon.
 | **Milotic** (Escama Especial, Baya Aslac, Vel 91) | Su Hidrobomba no le hace nada a Gastrodon (y le sube el Ataque Especial), pero Gastrodon tampoco le hace mucho. **Cambia a Roserade → Gigadrenado** (x2): es más rápida y Cura Natural le quita el sueño si te duerme con Hipnosis |
 | No uses a Gyarados | Rayo de Rhyperior (x4) y Roca Afilada de Dragonite (x2) |
 
-### Batalla 49 (Set 7): Cresselia, Regigigas, Heatran — sal con Gyarados
+### Batalla 49 (Set 7): Cresselia, Regigigas, Heatran — empiezas con Gastrodon (orden fijo del Set 7)
+Ninguno de los tres le pega súper eficaz a Gastrodon, pero solo le gana a Heatran. Contra los otros dos, cambia a Gyarados.
 | Si sale | Plan |
 |---|---|
-| **Heatran** (Absorbe Fuego, **Polvo Brillo**, Vel 97) | **Gyarados → Terremoto** (x4). Es inmune a su Tierra Viva y resiste Lluvia Ígnea y Foco Resplandor. Si fallas por el Polvo Brillo, repite. Respaldo: Gastrodon → Tierra Viva (x4) |
-| **Regigigas** (Inicio Lento, Baya Chople, Vel 121) | Es el más duro: Cascada sin mejoras le quita solo **29-34%**. Durante sus primeros **5 turnos** tiene la mitad de Ataque y Velocidad, y con Intimidación te pega más o menos un 40% por turno. Haz **1 Danza Dragón** (mejor si coincide con su Protección) y luego **Cascada** cada turno (+1: ~45-50% por golpe, y Gyarados siempre es más rápido). Si Gyarados baja de 40%, no hagas otra Danza: ataca. Respaldo: **Roserade → Bomba Lodo** (32-38%, es más rápida y tiene Banda Focus) |
-| **Cresselia** (Levitación, Restos, Vel 150) | Triturar sin mejoras le quita solo **33-40%**, y ella se cura con Luz Lunar y Restos. Sus ataques le hacen poco a Gyarados (Poder Reserva es débil hasta que acumula mejoras). Por eso: **Danza Dragón 1-2 veces** primero (con +1 ya eres más rápido que ella) y luego **Triturar** cada turno (+2: ~65-80% por golpe; puede bajarle la Defensa). Si usa Sustituto, rómpelo con Triturar |
+| **Heatran** (Absorbe Fuego, **Polvo Brillo**, Vel 97) | **Quédate: Gastrodon → Tierra Viva** (x4). Heatran es más rápido, pero Gastrodon resiste Lluvia Ígnea y Foco Resplandor. Si fallas por el Polvo Brillo, repite. Respaldo: Gyarados → Terremoto (x4), es inmune a su Tierra Viva |
+| **Regigigas** (Inicio Lento, Baya Chople, Vel 121) | Rayo Hielo de Gastrodon le pega neutral y poco: **cambia a Gyarados** (entra con Intimidación). Es el más duro: Cascada sin mejoras le quita solo **29-34%**. Durante sus primeros **5 turnos** tiene la mitad de Ataque y Velocidad, y con Intimidación te pega más o menos un 40% por turno. Haz **1 Danza Dragón** (mejor si coincide con su Protección) y luego **Cascada** cada turno (+1: ~45-50% por golpe, y Gyarados siempre es más rápido). Si Gyarados baja de 40%, no hagas otra Danza: ataca. Respaldo: **Roserade → Bomba Lodo** (32-38%, es más rápida y tiene Banda Focus) |
+| **Cresselia** (Levitación, Restos, Vel 150) | Gastrodon le hace poco: **cambia a Gyarados**. Triturar sin mejoras le quita solo **33-40%**, y ella se cura con Luz Lunar y Restos. Sus ataques le hacen poco a Gyarados (Poder Reserva es débil hasta que acumula mejoras). Por eso: **Danza Dragón 1-2 veces** primero (con +1 ya eres más rápido que ella) y luego **Triturar** cada turno (+2: ~65-80% por golpe; puede bajarle la Defensa). Si usa Sustituto, rómpelo con Triturar |
 | Roserade solo de respaldo | Cresselia (Psíquico), Regigigas (Puño Hielo) y Heatran (Fuego) le pegan súper eficaz: úsala solo para rematar a Regigigas |
 
 ## Después de una derrota
