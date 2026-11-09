@@ -17,8 +17,8 @@ Llegaste a 89: el equipo funciona. Las rachas largas casi siempre se pierden por
    El rival saca primero a **uno de sus 3 Pokémon al azar**, así que el líder recomendado es el que mejor le va en
    promedio contra todos los posibles. Si el entrenador no está en la tabla, sal con **Gastrodon**: es el mejor
    líder general (enfrentamiento favorable contra el 53% de los Pokémon del Set 7).
-3. **Cuando veas qué sacó el rival,** busca ese Pokémon en la tabla principal de [matchups.md](matchups.md) y cambia si tu
-   líder está en la columna *Cuidado*.
+3. **Cuando veas qué sacó el rival,** busca ese Pokémon en la tabla principal de [matchups.md](matchups.md). Si tu líder
+   aparece con ⚠ (recibe súper eficaz) y el rival es más rápido, cambia al Pokémon de la columna *Respuesta*.
 4. Antes de atacar, revisa en la app el **objeto** y la **habilidad** del rival:
    - **Banda Focus** o **Robustez** (Sturdy, muy común en el Set 7): no lo dejarás KO de un golpe. Usa primero un
      ataque débil o de prioridad, o ten listo el segundo golpe.
