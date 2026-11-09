@@ -18,17 +18,20 @@ Responde siempre en español.
 
 ## 2. Consulta los datos (desde la raíz del repo)
 ```bash
-.venv/bin/python estrategia/analisis/rival.py "<nombre>" --set <N> [--team <A|B|C>] [--clase "<clase>"]
+.venv/bin/python estrategia/analisis/rival.py "<nombre>" [--clase "<clase>"] [--set <N>] [--team <A|B|C>] [--saco <Pokémon>] --resumen
 ```
-- Si no sabes el equipo, omite `--team`: el script muestra todos los del set. Si el usuario dijo qué Pokémon sacó el
-  rival, identifica el equipo que lo contiene y responde solo sobre ese equipo.
+- **Haz UNA sola llamada.** Si el usuario dijo qué sacó el rival, pasa `--saco <Pokémon>`: el script elige ese equipo
+  (y el set, si no lo dio).
+- `--resumen` da una línea por Pokémon rival con las 2 mejores respuestas (ataque, % de daño, golpes para KO,
+  velocidad) y a quién evitar. Normalmente basta con eso. Usa la salida completa (sin `--resumen`) solo si necesitas
+  más detalle, por ejemplo en Palmer o en una situación rara.
 - Palmer funciona con `palmer --set 3` (batalla 21) o `palmer --set 7` (batalla 49). Para Palmer usa además los planes de
   la sección *Palmer* de `estrategia/protocolo_racha.md`.
 - Si el script no encuentra al entrenador o hay varios parecidos, dilo y pregunta en una línea. No inventes datos.
+  No leas otros archivos salvo que haga falta.
 
-El script da, para cada Pokémon rival: tipos, habilidad, objeto, movimientos (con tipo), stats a nivel 50, trampas, y
-para cada miembro del equipo del usuario: si es más rápido, qué le pega súper eficaz y el **daño estimado** de cada
-ataque (% de los PS del rival, ya con STAB, efectividad, habilidad y bayas que reducen daño).
+El daño estimado ya incluye STAB, efectividad, habilidades (Roca Sólida, Multiescamas…) y bayas que reducen daño.
+El ranking del resumen es orientativo: revísalo con los criterios del punto 3.
 
 ## 3. Decide con criterio (no solo con la tabla)
 - **Primero lo urgente:** si el Pokémon del usuario en campo recibe súper eficaz de un rival más rápido (sobre todo x4,

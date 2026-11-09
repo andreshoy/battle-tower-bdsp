@@ -7,9 +7,11 @@ más rápido, el daño estimado de tus ataques y las trampas (Banda Focus, Levit
 Uso (desde la raíz del repo):
     .venv/bin/python estrategia/analisis/rival.py Mikaela --set 2 --team B
     .venv/bin/python estrategia/analisis/rival.py "Ezequiel" --set 2 --clase youngster
+    .venv/bin/python estrategia/analisis/rival.py chaz --clase "school kid" --saco lickitung --resumen   # rápido
 """
 import argparse
 import difflib
+import math
 import os
 import sys
 import unicodedata
@@ -151,6 +153,45 @@ def report(team, rows, mtypes):
             print('       ' + ' · '.join(dmg))
 
 
+def summary(team, rows, mtypes):
+    """Una línea por Pokémon rival con las dos mejores respuestas (golpes para KO, velocidad, riesgo)."""
+    for _, r in rows.iterrows():
+        rtypes = [r['type1'], r['type2'] if isinstance(r['type2'], str) else None]
+        moves = pokemon_moves(r)
+        sturdy = r['item'] == 'Focus Sash' or r['ability'] == 'Sturdy'
+        options = []
+        for m in team:
+            best = None
+            for name, mtype in m['ataques']:
+                if name not in MOVE_DATA:
+                    continue
+                lo, hi, mult, _ = damage_range(m, name, mtype, r, rtypes, m['habilidad'])
+                if lo > 0 and (best is None or lo > best[1]):
+                    best = (name, lo, hi, mult)
+            if not best:
+                continue
+            hits = max(2 if sturdy else 1, math.ceil(1 / best[1]))
+            threats = [mv for mv in moves if mv in mtypes and mv not in NON_DAMAGING
+                       and effectiveness(mtypes[mv], m['tipos'], m['habilidad']) >= 2]
+            faster = m['stats'][5] > int(r['spe'])
+            cost = hits + (0 if faster else 0.5) + (1.5 if threats and not faster else 0.75 if threats else 0)
+            options.append((cost, m['nombre'], best, hits, faster, threats))
+        options.sort()
+        traps = [TRAP_MOVES[mv] for mv in moves if mv in TRAP_MOVES]
+        if r['item'] in RISKY_ITEMS:
+            traps.append(r['item'])
+        if r['ability'] in ('Sturdy', 'Levitate') or 'Flying' in rtypes:
+            traps.append('Robustez' if r['ability'] == 'Sturdy' else 'inmune a Tierra')
+        print(f"- {r['pokemon_name']} ({'/'.join(t for t in rtypes if t)}, {r['ability']}, {r['item']}, Vel {r['spe']}, "
+              f"Def {r['def']} / SpD {r['spd']}) movs: {', '.join(moves)}" + (f" ⚠ {'; '.join(traps)}" if traps else ''))
+        for cost, nm, (mv, lo, hi, mult), hits, faster, threats in options[:2]:
+            print(f"    → {nm}: {mv} x{mult:g} {lo:.0%}-{hi:.0%} ({hits} golpe{'s' if hits > 1 else ''}), "
+                  f"{'más rápido' if faster else 'más lento'}" + (f", recibe SE de {', '.join(threats)}" if threats else ''))
+        weak = [o[1] for o in options if o[5] and not o[4]]
+        if weak:
+            print(f"    ✗ evitar: {', '.join(weak)} (recibe SE y es más lento)")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('nombre')
@@ -158,6 +199,8 @@ def main():
     parser.add_argument('--team', help='A, B o C; por defecto todos')
     parser.add_argument('--clase', help='clase del entrenador para desambiguar (ej. "youngster")')
     parser.add_argument('--equipo', default='actual', help='equipo de equipo.yaml')
+    parser.add_argument('--saco', help='Pokémon que sacó el rival: elige solo el equipo que lo contiene')
+    parser.add_argument('--resumen', action='store_true', help='salida corta con la mejor opción por Pokémon rival')
     args = parser.parse_args()
 
     df = pd.read_parquet(FINAL_PATH)
@@ -185,6 +228,15 @@ def main():
         rows = by_set if not by_set.empty else rows[(rows['Set'] == 'Boss') & (rows['Team'] == f'Set {args.set}')]
     if args.team:
         rows = rows[rows['Team'].str.upper().str.endswith(args.team.strip().upper())]
+    if args.saco:
+        species = {norm(p): p for p in rows['pokemon_name'].unique()}
+        hit = difflib.get_close_matches(norm(args.saco), species.keys(), n=1, cutoff=0.6)
+        if hit:
+            keys = rows.loc[rows['pokemon_name'] == species[hit[0]], ['Set', 'Team']].drop_duplicates()
+            if not args.set and len(keys) > 1:
+                keys = keys.tail(1)  # sin set indicado: el más alto
+            rows = rows.merge(keys, on=['Set', 'Team'])
+            args.set = args.set or keys.iloc[0]['Set'].replace('Set ', '')
     others = [m for m in matches[1:]]
     classes = ', '.join(sorted(set(rows['trainer_class'].fillna('Boss'))))
     print(f"# {classes} {name}" + (f" — Set {args.set}" if args.set else '') + (f", Team {args.team.upper()}" if args.team else ''))
@@ -195,7 +247,7 @@ def main():
         sys.exit('✗ Sin datos para ese Set/equipo. Disponible:\n' + avail.to_string())
     for team_name, g in rows.groupby(['Set', 'Team']):
         print(f'\n=== {team_name[0]} · {team_name[1]} ===')
-        report(team, g, mtypes)
+        (summary if args.resumen else report)(team, g, mtypes)
 
 
 if __name__ == '__main__':
